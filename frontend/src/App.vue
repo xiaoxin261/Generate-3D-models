@@ -1,0 +1,214 @@
+<template>
+  <div class="app-container">
+
+
+
+    <!-- 主要内容区域 -->
+    <!-- 左侧模型列表 -->
+    <!-- <ModelList 
+        :models="models"
+        @drag-start="handleDragStart"
+        @remove-model="removeModel"
+      /> -->
+
+    <!-- 中央3D场景区域 -->
+    <div class="scene-container">
+      <ThreeScene ref="threeSceneRef" :room-params="roomParams" :current-drag-model="currentDragModel"
+        @export-models="showExportDialog = true" />
+    </div>
+    <!-- 左侧模型生成区域 -->
+    <div class="model-generate-section">
+      <ModelGenerator :is-generating="isGenerating" :progress="progress" @generate="handleGenerateModel" />
+    </div>
+    <!-- 右侧房间参数设置区域 -->
+    <div class="room-generate-section">
+      <RoomGenerator />
+    </div>
+
+    <!-- 导出格式选择对话框 -->
+    <!-- <div v-if="showExportDialog" class="dialog-overlay" @click="closeExportDialog">
+      <div class="dialog-content" @click.stop>
+        <h3>选择导出格式</h3>
+        <div class="export-formats">
+          <button v-for="format in exportFormats" :key="format" @click="confirmExport(format)">
+            {{ format }}
+          </button>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import ModelGenerator from './components/ModelGenerator.vue';
+import ModelList from './components/ModelList.vue';
+import ThreeScene from './components/ThreeScene.vue';
+import RoomGenerator from './components/RoomGenerator.vue';
+
+// 生成状态
+const isGenerating = ref(false);
+const progress = ref(0);
+
+// 模型列表
+const models = ref([]);
+const currentDragModel = ref(null);
+
+// 导出相关
+const showExportDialog = ref(false);
+const exportFormats = ref(['GLB', 'OBJ', 'STL']);
+
+// 组件引用
+const threeSceneRef = ref(null);
+
+// 处理模型生成
+const handleGenerateModel = (params) => {
+  if (isGenerating.value) return;
+
+  isGenerating.value = true;
+  progress.value = 0;
+
+  // 根据参数调用腾讯混元API
+  callHunyuanAPI(params);
+
+  // 模拟API调用过程
+  simulateModelGeneration(params);
+};
+
+// 调用腾讯混元API
+const callHunyuanAPI = (params) => {
+  // 腾讯混元API调用实现
+  console.log('调用腾讯混元API');
+  console.log('参数:', params);
+
+  // 实际环境中的API调用代码（注释部分）
+};
+
+// 轮询任务状态
+const pollJobStatus = (jobId) => {
+  console.log('轮询任务状态:', jobId);
+
+  // 实际环境中的轮询代码（注释部分）
+};
+
+// 模拟模型生成过程
+const simulateModelGeneration = (params) => {
+  // 模拟进度更新
+  const interval = setInterval(() => {
+    progress.value += 5;
+
+    if (progress.value >= 100) {
+      clearInterval(interval);
+      isGenerating.value = false;
+
+      // 添加到模型列表
+      const newModel = {
+        id: Date.now(),
+        name: params.prompt || 'Generated Model',
+        previewUrl: 'https://via.placeholder.com/100',
+        modelUrl: '',
+        format: params.resultFormat
+      };
+
+      models.value.push(newModel);
+
+      // 添加粒子效果
+      if (threeSceneRef.value) {
+        threeSceneRef.value.addParticlesEffect();
+      }
+    }
+  }, 200);
+};
+
+// 处理生成的模型
+const handleGeneratedModel = (resultFile, params) => {
+  const newModel = {
+    id: Date.now(),
+    name: params.prompt || 'Generated Model',
+    previewUrl: resultFile.PreviewImageUrl,
+    modelUrl: resultFile.Url,
+    format: resultFile.Type
+  };
+
+  models.value.push(newModel);
+
+  // 添加粒子效果
+  if (threeSceneRef.value) {
+    threeSceneRef.value.addParticlesEffect();
+  }
+};
+
+// 拖拽开始
+const handleDragStart = (model) => {
+  currentDragModel.value = model;
+
+  // 监听拖拽结束事件
+  setTimeout(() => {
+    const handleDragEnd = () => {
+      currentDragModel.value = null;
+      document.removeEventListener('dragend', handleDragEnd);
+    };
+    document.addEventListener('dragend', handleDragEnd);
+  }, 0);
+};
+
+// 移除模型
+const removeModel = (index) => {
+  models.value.splice(index, 1);
+};
+
+// 确认导出
+const confirmExport = (format) => {
+  console.log(`导出模型为${format}格式`);
+  closeExportDialog();
+
+  // 模拟导出成功
+  setTimeout(() => {
+    alert(`模型已成功导出为${format}格式`);
+  }, 500);
+};
+
+// 关闭导出对话框
+const closeExportDialog = () => {
+  showExportDialog.value = false;
+};
+</script>
+
+<style scoped>
+.app-container {
+  position: relative;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+}
+
+.model-generate-section {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 20px;
+  background-color: white;
+  width: 15%;
+  height: 95vh;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.room-generate-section {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 20px;
+  background-color: white;
+  width: 15%;
+  height: 95vh;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.scene-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+</style>
