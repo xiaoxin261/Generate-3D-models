@@ -1,0 +1,983 @@
+2025-09-24 00:10:53.575 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 23.0.2 with PID 3320 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 00:10:53.599 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 00:10:53.602 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 00:10:56.476 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 00:10:56.483 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 00:10:56.573 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 39 ms. Found 0 Redis repository interfaces.
+2025-09-24 00:10:58.432 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-09-24 00:10:58.462 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-24 00:10:58.463 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-09-24 00:10:58.787 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-09-24 00:10:58.789 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4933 ms
+2025-09-24 00:10:59.234 [main] INFO  com.generate3d.config.OssConfig - 初始化OSS客户端 - endpoint: oss-cn-hangzhou.aliyuncs.com, bucket: generate-3d
+2025-09-24 00:11:03.396 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 2767dbcb-a927-464c-a7fc-3aa99817b774
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-09-24 00:11:03.747 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-09-24 00:11:03.811 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@782e0844, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@608c7b5b, org.springframework.security.web.context.SecurityContextHolderFilter@6318ff9, org.springframework.security.web.header.HeaderWriterFilter@2cd877d3, org.springframework.web.filter.CorsFilter@2643ed03, org.springframework.security.web.csrf.CsrfFilter@49c947f7, org.springframework.security.web.authentication.logout.LogoutFilter@123e9094, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7804a783, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5b29d699, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@17d45cfb, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5d08a65c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5655278d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2dd46693, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1fb00a6d, org.springframework.security.web.access.ExceptionTranslationFilter@46610fc9, org.springframework.security.web.access.intercept.AuthorizationFilter@2de82bf8]
+2025-09-24 00:11:04.124 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-09-24 00:11:04.166 [main] INFO  com.generate3d.Generate3DApplication - Started Generate3DApplication in 11.918 seconds (process running for 17.148)
+2025-09-24 00:35:51.410 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 23.0.2 with PID 14304 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 00:35:51.414 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 00:35:51.417 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 00:35:54.376 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 00:35:54.382 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 00:35:54.440 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 25 ms. Found 0 Redis repository interfaces.
+2025-09-24 00:35:55.776 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-09-24 00:35:55.797 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-24 00:35:55.797 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-09-24 00:35:55.947 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-09-24 00:35:55.948 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4294 ms
+2025-09-24 00:35:56.404 [main] INFO  com.generate3d.config.OssConfig - 初始化OSS客户端 - endpoint: oss-cn-hangzhou.aliyuncs.com, bucket: generate-3d
+2025-09-24 00:35:57.617 [main] INFO  com.generate3d.config.HunyuanConfig - 混元AI客户端初始化成功 - region: ap-beijing, endpoint: hunyuan.tencentcloudapi.com
+2025-09-24 00:36:00.265 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 3b684651-b1bf-40e0-9b3c-54e4af15f776
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-09-24 00:36:00.646 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-09-24 00:36:00.684 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@44d6f9cf, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34f32575, org.springframework.security.web.context.SecurityContextHolderFilter@6f26e775, org.springframework.security.web.header.HeaderWriterFilter@74b521c, org.springframework.web.filter.CorsFilter@54224125, org.springframework.security.web.csrf.CsrfFilter@34588991, org.springframework.security.web.authentication.logout.LogoutFilter@28f3a218, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@21f0cc97, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6fe77a97, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@7c013560, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@341889a1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e5c245d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c862522, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@feab3ae, org.springframework.security.web.access.ExceptionTranslationFilter@4529048e, org.springframework.security.web.access.intercept.AuthorizationFilter@8a7cd7c]
+2025-09-24 00:36:00.942 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-09-24 00:36:00.974 [main] INFO  com.generate3d.Generate3DApplication - Started Generate3DApplication in 10.752 seconds (process running for 15.427)
+2025-09-24 00:41:48.191 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 23.0.2 with PID 16016 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 00:41:48.196 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 00:41:48.197 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 00:41:51.244 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 00:41:51.251 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 00:41:51.299 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2025-09-24 00:41:51.601 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.generate3d]' package. Please check your configuration.
+2025-09-24 00:41:53.204 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-09-24 00:41:53.223 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-24 00:41:53.223 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-09-24 00:41:53.393 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-09-24 00:41:53.395 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4975 ms
+2025-09-24 00:41:53.983 [main] INFO  com.generate3d.config.OssConfig - 初始化OSS客户端 - endpoint: oss-cn-hangzhou.aliyuncs.com, bucket: generate-3d
+2025-09-24 00:41:55.157 [main] INFO  com.generate3d.config.HunyuanConfig - 混元AI客户端初始化成功 - region: ap-beijing, endpoint: hunyuan.tencentcloudapi.com
+2025-09-24 00:41:58.321 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: c78cde37-bf59-44ff-9f17-b0b82e4fbcbc
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-09-24 00:41:58.641 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-09-24 00:41:58.741 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2370c90, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a9f7572, org.springframework.security.web.context.SecurityContextHolderFilter@49c555c3, org.springframework.security.web.header.HeaderWriterFilter@74070994, org.springframework.web.filter.CorsFilter@644c3590, org.springframework.security.web.csrf.CsrfFilter@71c69628, org.springframework.security.web.authentication.logout.LogoutFilter@2318651f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5625ba2, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@25762f04, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@2e60d4f4, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@580e01cd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@724e0a77, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@762db992, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14091e24, org.springframework.security.web.access.ExceptionTranslationFilter@3549c070, org.springframework.security.web.access.intercept.AuthorizationFilter@55465bfc]
+2025-09-24 00:41:59.181 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/api'
+2025-09-24 00:41:59.222 [main] INFO  com.generate3d.Generate3DApplication - Started Generate3DApplication in 12.382 seconds (process running for 17.556)
+2025-09-24 16:55:44.306 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 25416 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 16:55:44.309 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 16:55:44.309 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 16:55:46.851 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 16:55:46.856 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 16:55:46.900 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2025-09-24 16:55:47.111 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 16:55:47.112 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 16:55:47.113 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 16:55:47.113 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 16:55:47.116 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 16:55:47.125 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 16:55:47.126 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 16:55:47.127 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 16:55:47.129 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 16:55:47.153 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 16:55:47.203 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:20)
+2025-09-24 16:56:15.619 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 4920 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 16:56:15.620 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 16:56:15.622 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 16:56:17.177 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 16:56:17.179 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 16:56:17.204 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2025-09-24 16:56:17.330 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 16:56:17.331 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 16:56:17.331 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 16:56:17.331 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 16:56:17.332 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 16:56:17.334 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 16:56:17.335 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 16:56:17.338 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 16:56:17.340 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 16:56:17.360 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 16:56:17.382 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:20)
+2025-09-24 17:02:55.114 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 23.0.2 with PID 20272 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:02:55.117 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 17:02:55.119 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:02:57.443 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:02:57.448 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:02:57.481 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 11 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:02:57.624 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:02:57.625 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:02:57.625 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:02:57.625 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:02:57.626 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:02:57.631 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:02:57.632 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:02:57.633 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:02:57.634 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 17:02:57.658 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 17:02:57.704 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:20)
+2025-09-24 17:03:50.184 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 6844 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:03:50.186 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 17:03:50.189 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:03:51.745 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:03:51.751 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:03:51.798 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:03:51.979 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:03:51.980 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:03:51.981 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:03:51.983 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:03:51.985 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:03:51.991 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:03:51.994 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:03:51.996 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:03:51.998 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 17:03:52.029 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 17:03:52.068 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:20)
+2025-09-24 17:05:16.395 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 15588 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:05:16.397 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 17:05:16.398 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:05:18.195 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:05:18.201 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:05:18.246 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:05:18.410 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:05:18.411 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:05:18.411 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:05:18.411 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:05:18.413 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:05:18.416 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'exportTaskMapper'.
+2025-09-24 17:05:18.416 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:05:18.418 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'generationTaskMapper'.
+2025-09-24 17:05:18.418 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:05:18.419 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'modelMapper'.
+2025-09-24 17:05:18.420 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:05:18.422 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'systemConfigMapper'.
+2025-09-24 17:05:18.423 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 17:05:18.443 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 17:05:18.478 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:22)
+2025-09-24 17:09:06.518 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 4128 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:09:06.519 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 17:09:06.522 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:09:07.213 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.generate3d.Generate3DApplication]
+2025-09-24 17:12:39.799 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 23.0.2 with PID 23060 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:12:39.802 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 17:12:39.803 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:12:41.969 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:12:41.973 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:12:42.013 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:12:42.166 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:12:42.167 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:12:42.167 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:12:42.167 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:12:42.170 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:12:42.174 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'exportTaskMapper'.
+2025-09-24 17:12:42.177 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:12:42.181 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'generationTaskMapper'.
+2025-09-24 17:12:42.182 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:12:42.183 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'modelMapper'.
+2025-09-24 17:12:42.184 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:12:42.187 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'systemConfigMapper'.
+2025-09-24 17:12:42.195 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 17:12:42.223 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 17:12:42.267 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:22)
+2025-09-24 17:13:57.582 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 8628 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:13:57.584 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 17:13:57.586 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:13:59.644 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:13:59.649 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:13:59.746 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:14:00.038 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:14:00.038 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:14:00.039 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:14:00.039 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:14:00.044 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:14:00.051 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'exportTaskMapper'.
+2025-09-24 17:14:00.051 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:14:00.052 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'generationTaskMapper'.
+2025-09-24 17:14:00.052 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:14:00.053 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'modelMapper'.
+2025-09-24 17:14:00.054 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:14:00.054 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'systemConfigMapper'.
+2025-09-24 17:14:00.056 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 17:14:00.080 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 17:14:00.130 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:22)
+2025-09-24 17:15:28.077 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 17344 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:15:28.127 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 17:15:28.184 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:15:30.369 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:15:30.374 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:15:30.456 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 41 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:15:30.652 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:15:30.652 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:15:30.652 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:15:30.653 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:15:30.654 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:15:30.657 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'exportTaskMapper'.
+2025-09-24 17:15:30.659 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:15:30.660 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'generationTaskMapper'.
+2025-09-24 17:15:30.660 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:15:30.661 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'modelMapper'.
+2025-09-24 17:15:30.661 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:15:30.662 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'systemConfigMapper'.
+2025-09-24 17:15:30.663 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 17:15:30.691 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 17:15:30.725 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:22)
+2025-09-24 17:16:06.137 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 24784 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:16:06.139 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 17:16:06.141 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:16:08.294 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:16:08.297 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:16:08.345 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:16:08.486 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:16:08.487 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:16:08.487 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:16:08.487 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:16:08.489 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:16:08.491 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'exportTaskMapper'.
+2025-09-24 17:16:08.492 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:16:08.492 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'generationTaskMapper'.
+2025-09-24 17:16:08.493 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:16:08.494 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'modelMapper'.
+2025-09-24 17:16:08.495 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:16:08.497 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Enabling autowire by type for MapperFactoryBean with name 'systemConfigMapper'.
+2025-09-24 17:16:08.498 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 17:16:08.521 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 17:16:08.545 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:22)
+2025-09-24 17:16:51.150 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 15072 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:16:51.154 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 17:16:51.156 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:16:53.710 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:16:53.712 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:16:53.752 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:16:53.921 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:16:53.921 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:16:53.922 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:16:53.922 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:16:53.923 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:16:53.926 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:16:53.926 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:16:53.927 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:16:53.930 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 17:16:53.949 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 17:16:53.973 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:20)
+2025-09-24 17:18:52.160 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 25224 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:18:52.165 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2025-09-24 17:18:52.167 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:18:55.138 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:18:55.147 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:18:55.429 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 139 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:18:55.725 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:18:55.726 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:18:55.729 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:18:55.730 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:18:55.738 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:18:55.744 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:18:55.747 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:18:55.749 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:18:57.554 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-09-24 17:18:57.588 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-24 17:18:57.592 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2025-09-24 17:18:58.691 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-09-24 17:18:58.694 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6408 ms
+2025-09-24 17:19:00.200 [main] INFO  com.generate3d.config.OssConfig - 初始化OSS客户端 - endpoint: oss-cn-hangzhou.aliyuncs.com, bucket: generate-3d
+2025-09-24 17:19:03.918 [main] INFO  com.generate3d.config.HunyuanConfig - 混元AI客户端初始化成功 - region: ap-beijing, endpoint: hunyuan.tencentcloudapi.com
+2025-09-24 17:19:04.593 [main] INFO  com.generate3d.config.RedisConfig - RedisTemplate配置完成
+2025-09-24 17:19:04.751 [main] INFO  com.generate3d.config.AsyncConfig - 模型生成线程池初始化完成: 核心线程数=2, 最大线程数=5, 队列容量=100
+2025-09-24 17:19:04.762 [main] INFO  com.generate3d.config.AsyncConfig - 模型导出线程池初始化完成: 核心线程数=1, 最大线程数=3, 队列容量=50
+2025-09-24 17:19:04.768 [main] INFO  com.generate3d.config.AsyncConfig - 文件处理线程池初始化完成: 核心线程数=2, 最大线程数=4, 队列容量=200
+2025-09-24 17:19:04.775 [main] INFO  com.generate3d.config.AsyncConfig - 默认异步线程池初始化完成: 核心线程数=4, 最大线程数=8, 队列容量=500
+2025-09-24 17:19:04.830 [main] INFO  com.generate3d.config.RedisConfig - Redis缓存管理器配置完成
+2025-09-24 17:19:04.858 [main] INFO  com.generate3d.config.SwaggerConfig - Swagger API文档配置完成，当前环境: dev
+2025-09-24 17:19:07.392 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 472638b8-1f40-4aad-ae56-03ce77bffeb8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-09-24 17:19:07.649 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-09-24 17:19:07.718 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5a5c2889, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7668f8fd, org.springframework.security.web.context.SecurityContextHolderFilter@4a0ee0ba, org.springframework.security.web.header.HeaderWriterFilter@242ebd3b, org.springframework.web.filter.CorsFilter@75566f4, org.springframework.security.web.csrf.CsrfFilter@73bcd9b4, org.springframework.security.web.authentication.logout.LogoutFilter@3ffe74da, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2e1c8027, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6a9ac8b, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6785786d, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3183a37c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1812b564, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@28dd8786, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5c261c74, org.springframework.security.web.access.ExceptionTranslationFilter@659ac28c, org.springframework.security.web.access.intercept.AuthorizationFilter@70044113]
+2025-09-24 17:19:08.201 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-09-24 17:19:08.240 [main] INFO  com.generate3d.Generate3DApplication - Started Generate3DApplication in 17.738 seconds (process running for 19.022)
+2025-09-24 17:19:24.986 [http-nio-8080-exec-2] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-24 17:19:25.000 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-09-24 17:19:25.005 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-09-24 17:19:25.114 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /?ide_webview_request_time=1758705563929
+2025-09-24 17:19:25.258 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-09-24 17:19:25.683 [http-nio-8080-exec-2] WARN  org.apache.catalina.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [355] milliseconds.
+2025-09-24 17:19:25.695 [http-nio-8080-exec-2] DEBUG o.s.s.web.savedrequest.HttpSessionRequestCache - Saved request http://localhost:8080/api/?ide_webview_request_time=1758705563929&continue to session
+2025-09-24 17:19:25.775 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint - Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@11f3ab8e, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2025-09-24 17:19:25.785 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint - Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@3c4e17ea
+2025-09-24 17:19:25.789 [http-nio-8080-exec-2] DEBUG o.s.security.web.DefaultRedirectStrategy - Redirecting to http://localhost:8080/api/login
+2025-09-24 17:19:25.878 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /login
+2025-09-24 17:22:18.051 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 23.0.2 with PID 13108 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:22:18.054 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2025-09-24 17:22:18.055 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:22:20.412 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:22:20.418 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:22:20.465 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 18 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:22:20.720 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:22:20.721 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:22:20.723 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:22:20.723 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:22:20.726 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:22:20.732 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:22:20.733 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:22:20.735 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:22:22.070 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-09-24 17:22:22.086 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-24 17:22:22.086 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2025-09-24 17:22:22.281 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-09-24 17:22:22.311 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4098 ms
+2025-09-24 17:22:22.730 [main] INFO  com.generate3d.config.OssConfig - 初始化OSS客户端 - endpoint: oss-cn-hangzhou.aliyuncs.com, bucket: generate-3d
+2025-09-24 17:22:24.347 [main] INFO  com.generate3d.config.HunyuanConfig - 混元AI客户端初始化成功 - region: ap-beijing, endpoint: hunyuan.tencentcloudapi.com
+2025-09-24 17:22:24.795 [main] INFO  com.generate3d.config.RedisConfig - RedisTemplate配置完成
+2025-09-24 17:22:24.935 [main] INFO  com.generate3d.config.AsyncConfig - 模型生成线程池初始化完成: 核心线程数=2, 最大线程数=5, 队列容量=100
+2025-09-24 17:22:24.943 [main] INFO  com.generate3d.config.AsyncConfig - 模型导出线程池初始化完成: 核心线程数=1, 最大线程数=3, 队列容量=50
+2025-09-24 17:22:24.944 [main] INFO  com.generate3d.config.AsyncConfig - 文件处理线程池初始化完成: 核心线程数=2, 最大线程数=4, 队列容量=200
+2025-09-24 17:22:24.946 [main] INFO  com.generate3d.config.AsyncConfig - 默认异步线程池初始化完成: 核心线程数=4, 最大线程数=8, 队列容量=500
+2025-09-24 17:22:24.965 [main] INFO  com.generate3d.config.RedisConfig - Redis缓存管理器配置完成
+2025-09-24 17:22:24.979 [main] INFO  com.generate3d.config.SwaggerConfig - Swagger API文档配置完成，当前环境: dev
+2025-09-24 17:22:26.619 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 42b87174-7eec-40c9-a589-0d5700e43888
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-09-24 17:22:26.869 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-09-24 17:22:26.915 [main] INFO  o.s.security.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3abb6aa, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34074149, org.springframework.security.web.context.SecurityContextHolderFilter@620e0d36, org.springframework.security.web.header.HeaderWriterFilter@1315befe, org.springframework.web.filter.CorsFilter@3f7bf0f6, org.springframework.security.web.csrf.CsrfFilter@d164938, org.springframework.security.web.authentication.logout.LogoutFilter@22a8e87b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6abaa14b, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@76641439, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@45430a27, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@56fc2cea, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3df4cd96, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@753c7411, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b83fac3, org.springframework.security.web.access.ExceptionTranslationFilter@7d76d72a, org.springframework.security.web.access.intercept.AuthorizationFilter@6c399d4]
+2025-09-24 17:22:27.176 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-09-24 17:22:27.195 [main] INFO  com.generate3d.Generate3DApplication - Started Generate3DApplication in 10.128 seconds (process running for 12.436)
+2025-09-24 17:31:58.907 [http-nio-8080-exec-1] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-24 17:31:58.914 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-09-24 17:31:58.948 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 32 ms
+2025-09-24 17:31:59.057 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /api/models/generate?text=%E4%B8%80%E4%B8%AA%E7%94%B5%E8%A7%86&material=plastic&color=%23ff0000&size=medium
+2025-09-24 17:31:59.276 [http-nio-8080-exec-1] WARN  org.apache.catalina.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [141] milliseconds.
+2025-09-24 17:31:59.285 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.csrf.CsrfFilter - Invalid CSRF token found for http://127.0.0.1:8080/api/api/models/generate?text=%E4%B8%80%E4%B8%AA%E7%94%B5%E8%A7%86&material=plastic&color=%23ff0000&size=medium
+2025-09-24 17:31:59.286 [http-nio-8080-exec-1] DEBUG o.s.security.web.access.AccessDeniedHandlerImpl - Responding with 403 status code
+2025-09-24 17:31:59.305 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /error?text=%E4%B8%80%E4%B8%AA%E7%94%B5%E8%A7%86&material=plastic&color=%23ff0000&size=medium
+2025-09-24 17:31:59.347 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-09-24 17:31:59.411 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint - Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@3ddf0e9a, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2025-09-24 17:31:59.413 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint - Trying to match using Or [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest], And [Not [MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@3ddf0e9a, matchingMediaTypes=[text/html], useEquals=false, ignoredMediaTypes=[]]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@3ddf0e9a, matchingMediaTypes=[application/atom+xml, application/x-www-form-urlencoded, application/json, application/octet-stream, application/xml, multipart/form-data, text/xml], useEquals=false, ignoredMediaTypes=[*/*]]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@3ddf0e9a, matchingMediaTypes=[*/*], useEquals=true, ignoredMediaTypes=[]]]
+2025-09-24 17:31:59.414 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint - Match found! Executing org.springframework.security.web.authentication.DelegatingAuthenticationEntryPoint@9e4388d
+2025-09-24 17:31:59.414 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint - Trying to match using RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]
+2025-09-24 17:31:59.414 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.DelegatingAuthenticationEntryPoint - No match found. Using default entry point org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint@712a2f5f
+2025-09-24 17:41:42.359 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 23.0.2 with PID 6856 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:41:42.362 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2025-09-24 17:41:42.363 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:41:44.280 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:41:44.283 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:41:44.342 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:41:44.469 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:41:44.470 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:41:44.470 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:41:44.470 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:41:44.471 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:41:44.475 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:41:44.476 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:41:44.477 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:41:45.413 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-09-24 17:41:45.426 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-24 17:41:45.426 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2025-09-24 17:41:45.576 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-09-24 17:41:45.576 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3108 ms
+2025-09-24 17:41:45.833 [main] INFO  com.generate3d.config.OssConfig - 初始化OSS客户端 - endpoint: oss-cn-hangzhou.aliyuncs.com, bucket: generate-3d
+2025-09-24 17:41:46.994 [main] INFO  com.generate3d.config.HunyuanConfig - 混元AI客户端初始化成功 - region: ap-beijing, endpoint: hunyuan.tencentcloudapi.com
+2025-09-24 17:41:47.368 [main] INFO  com.generate3d.config.RedisConfig - RedisTemplate配置完成
+2025-09-24 17:41:47.465 [main] INFO  com.generate3d.config.AsyncConfig - 模型生成线程池初始化完成: 核心线程数=2, 最大线程数=5, 队列容量=100
+2025-09-24 17:41:47.475 [main] INFO  com.generate3d.config.AsyncConfig - 模型导出线程池初始化完成: 核心线程数=1, 最大线程数=3, 队列容量=50
+2025-09-24 17:41:47.477 [main] INFO  com.generate3d.config.AsyncConfig - 文件处理线程池初始化完成: 核心线程数=2, 最大线程数=4, 队列容量=200
+2025-09-24 17:41:47.477 [main] INFO  com.generate3d.config.AsyncConfig - 默认异步线程池初始化完成: 核心线程数=4, 最大线程数=8, 队列容量=500
+2025-09-24 17:41:47.493 [main] INFO  com.generate3d.config.RedisConfig - Redis缓存管理器配置完成
+2025-09-24 17:41:47.500 [main] INFO  com.generate3d.config.SwaggerConfig - Swagger API文档配置完成，当前环境: dev
+2025-09-24 17:41:48.574 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-09-24 17:41:48.689 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-09-24 17:41:48.714 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2025-09-24 17:41:48.737 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 17:41:48.763 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-09-24 17:49:57.872 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 23.0.2 with PID 1504 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:49:57.874 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2025-09-24 17:49:57.876 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:49:59.887 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:49:59.892 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:49:59.931 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:50:00.070 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:50:00.071 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:50:00.072 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:50:00.072 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:50:00.073 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:50:00.077 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:50:00.078 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:50:00.081 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:50:01.111 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-09-24 17:50:01.128 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-24 17:50:01.128 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2025-09-24 17:50:01.283 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-09-24 17:50:01.283 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3210 ms
+2025-09-24 17:50:01.593 [main] INFO  com.generate3d.config.OssConfig - 初始化OSS客户端 - endpoint: oss-cn-hangzhou.aliyuncs.com, bucket: generate-3d
+2025-09-24 17:50:02.871 [main] INFO  com.generate3d.config.HunyuanConfig - 混元AI客户端初始化成功 - region: ap-beijing, endpoint: hunyuan.tencentcloudapi.com
+2025-09-24 17:50:03.318 [main] INFO  com.generate3d.config.RedisConfig - RedisTemplate配置完成
+2025-09-24 17:50:03.433 [main] INFO  com.generate3d.config.AsyncConfig - 模型生成线程池初始化完成: 核心线程数=2, 最大线程数=5, 队列容量=100
+2025-09-24 17:50:03.439 [main] INFO  com.generate3d.config.AsyncConfig - 模型导出线程池初始化完成: 核心线程数=1, 最大线程数=3, 队列容量=50
+2025-09-24 17:50:03.440 [main] INFO  com.generate3d.config.AsyncConfig - 文件处理线程池初始化完成: 核心线程数=2, 最大线程数=4, 队列容量=200
+2025-09-24 17:50:03.440 [main] INFO  com.generate3d.config.AsyncConfig - 默认异步线程池初始化完成: 核心线程数=4, 最大线程数=8, 队列容量=500
+2025-09-24 17:50:03.461 [main] INFO  com.generate3d.config.RedisConfig - Redis缓存管理器配置完成
+2025-09-24 17:50:03.467 [main] INFO  com.generate3d.config.SwaggerConfig - Swagger API文档配置完成，当前环境: dev
+2025-09-24 17:50:04.565 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-09-24 17:50:04.695 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-09-24 17:50:04.711 [main] INFO  com.generate3d.Generate3DApplication - Started Generate3DApplication in 7.713 seconds (process running for 10.166)
+2025-09-24 17:50:26.417 [http-nio-8080-exec-2] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-24 17:50:26.417 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-09-24 17:50:26.422 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2025-09-24 17:50:26.543 [http-nio-8080-exec-2] WARN  o.s.core.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.generate3d.controller.ModelController
+2025-09-24 17:50:58.444 [http-nio-8080-exec-4] INFO  com.zaxxer.hikari.HikariDataSource - Generate3DHikariCP - Starting...
+2025-09-24 17:51:00.144 [http-nio-8080-exec-4] ERROR com.zaxxer.hikari.pool.HikariPool - Generate3DHikariCP - Exception during pool initialization.
+java.sql.SQLSyntaxErrorException: Unknown database 'generate3d'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	at jdk.proxy2/jdk.proxy2.$Proxy106.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:152)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy2/jdk.proxy2.$Proxy112.insert(Unknown Source)
+	at com.baomidou.mybatisplus.extension.service.IService.save(IService.java:61)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:699)
+	at com.generate3d.service.GenerationTaskService$$SpringCGLIB$$0.save(<generated>)
+	at com.generate3d.service.ModelGenerationService.createGenerationTask(ModelGenerationService.java:49)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:699)
+	at com.generate3d.service.ModelGenerationService$$SpringCGLIB$$0.createGenerationTask(<generated>)
+	at com.generate3d.controller.ModelController.createGenerationTask(ModelController.java:115)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-09-24 17:51:00.168 [http-nio-8080-exec-4] ERROR com.generate3d.controller.ModelController - 创建生成任务失败
+org.mybatis.spring.MyBatisSystemException: null
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:97)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy106.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:59)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:152)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy2/jdk.proxy2.$Proxy112.insert(Unknown Source)
+	at com.baomidou.mybatisplus.extension.service.IService.save(IService.java:61)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:699)
+	at com.generate3d.service.GenerationTaskService$$SpringCGLIB$$0.save(<generated>)
+	at com.generate3d.service.ModelGenerationService.createGenerationTask(ModelGenerationService.java:49)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:699)
+	at com.generate3d.service.ModelGenerationService$$SpringCGLIB$$0.createGenerationTask(<generated>)
+	at com.generate3d.controller.ModelController.createGenerationTask(ModelController.java:115)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error updating database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in com/generate3d/mapper/GenerationTaskMapper.java (best guess)
+### The error may involve com.generate3d.mapper.GenerationTaskMapper.insert
+### The error occurred while executing an update
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:199)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 71 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:80)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:67)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:49)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	... 75 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'generate3d'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
+	... 82 common frames omitted
+2025-09-24 17:54:13.194 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 23.0.2 with PID 28116 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:54:13.196 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2025-09-24 17:54:13.198 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "dev"
+2025-09-24 17:54:15.343 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:54:15.348 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:54:15.389 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:54:15.522 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:54:15.523 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:54:15.523 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:54:15.523 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:54:15.524 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:54:15.529 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:54:15.530 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:54:15.531 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:54:16.592 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-09-24 17:54:16.604 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2025-09-24 17:54:16.605 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2025-09-24 17:54:16.747 [main] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring embedded WebApplicationContext
+2025-09-24 17:54:16.749 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3432 ms
+2025-09-24 17:54:17.013 [main] INFO  com.generate3d.config.OssConfig - 初始化OSS客户端 - endpoint: oss-cn-hangzhou.aliyuncs.com, bucket: generate-3d
+2025-09-24 17:54:18.113 [main] INFO  com.generate3d.config.HunyuanConfig - 混元AI客户端初始化成功 - region: ap-beijing, endpoint: hunyuan.tencentcloudapi.com
+2025-09-24 17:54:18.476 [main] INFO  com.generate3d.config.RedisConfig - RedisTemplate配置完成
+2025-09-24 17:54:18.558 [main] INFO  com.generate3d.config.AsyncConfig - 模型生成线程池初始化完成: 核心线程数=2, 最大线程数=5, 队列容量=100
+2025-09-24 17:54:18.561 [main] INFO  com.generate3d.config.AsyncConfig - 模型导出线程池初始化完成: 核心线程数=1, 最大线程数=3, 队列容量=50
+2025-09-24 17:54:18.562 [main] INFO  com.generate3d.config.AsyncConfig - 文件处理线程池初始化完成: 核心线程数=2, 最大线程数=4, 队列容量=200
+2025-09-24 17:54:18.563 [main] INFO  com.generate3d.config.AsyncConfig - 默认异步线程池初始化完成: 核心线程数=4, 最大线程数=8, 队列容量=500
+2025-09-24 17:54:18.577 [main] INFO  com.generate3d.config.RedisConfig - Redis缓存管理器配置完成
+2025-09-24 17:54:18.585 [main] INFO  com.generate3d.config.SwaggerConfig - Swagger API文档配置完成，当前环境: dev
+2025-09-24 17:54:19.686 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-09-24 17:54:19.835 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api'
+2025-09-24 17:54:19.854 [main] INFO  com.generate3d.Generate3DApplication - Started Generate3DApplication in 7.556 seconds (process running for 9.813)
+2025-09-24 17:54:25.535 [http-nio-8080-exec-2] INFO  o.a.c.c.ContainerBase.[Tomcat].[localhost].[/api] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-24 17:54:25.535 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-09-24 17:54:25.537 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-09-24 17:54:25.589 [http-nio-8080-exec-2] WARN  o.s.core.LocalVariableTableParameterNameDiscoverer - Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.generate3d.controller.ModelController
+2025-09-24 17:54:25.933 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - Generate3DHikariCP - Starting...
+2025-09-24 17:54:26.585 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - Generate3DHikariCP - Added connection com.mysql.cj.jdbc.ConnectionImpl@3cac31d8
+2025-09-24 17:54:26.590 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - Generate3DHikariCP - Start completed.
+2025-09-24 17:54:27.458 [http-nio-8080-exec-2] ERROR com.generate3d.controller.ModelController - 创建生成任务失败
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1604)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1535)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1360)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1343)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1061)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:400)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:195)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:393)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:373)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97)
+	at org.springframework.data.redis.core.DefaultValueOperations.set(DefaultValueOperations.java:253)
+	at org.springframework.data.redis.core.ValueOperations.set(ValueOperations.java:75)
+	at com.generate3d.service.ModelGenerationService.cacheTaskStatus(ModelGenerationService.java:314)
+	at com.generate3d.service.ModelGenerationService.createGenerationTask(ModelGenerationService.java:52)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:699)
+	at com.generate3d.service.ModelGenerationService$$SpringCGLIB$$0.createGenerationTask(<generated>)
+	at com.generate3d.controller.ModelController.createGenerationTask(ModelController.java:115)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:350)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:112)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:112)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1533)
+	... 72 common frames omitted
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:1062)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
