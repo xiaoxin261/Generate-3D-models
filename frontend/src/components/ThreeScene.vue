@@ -48,7 +48,7 @@ const threeManager = new ThreeJSManager();
 const initScene = () => {
   const container = sceneRef.value;
   if (!container) return;
-  
+
   threeManager.initScene(container, (modelData) => {
     emit('modelPlaced', modelData);
   });
@@ -60,8 +60,21 @@ const generateRoom = () => {
 };
 
 // 房间模型加载
-const loadRoomModel = (modelUrl, scale = 1) => {
+const loadRoomModel = (modelUrl, scale = 10) => {
   threeManager.loadRoomModel(modelUrl, scale);
+};
+
+// 普通模型加载
+const loadSimpleModel = (modelUrl, scale = 1) => {
+  const model = {
+    id: 'simple-model',
+    name: '普通模型',
+    modelUrl: modelUrl,
+    format: modelUrl.toLowerCase().includes('.obj') ? 'obj' :
+      modelUrl.toLowerCase().includes('.gltf') || modelUrl.toLowerCase().includes('.glb') ? 'gltf' :
+        modelUrl.toLowerCase().includes('.stl') ? 'stl' : 'obj'
+  };
+  threeManager.loadAndPlaceModel(model, scale);
 };
 
 // 处理拖拽模型变化
@@ -88,7 +101,8 @@ const exportScene = () => {
 // 暴露给父组件的方法
 defineExpose({
   addParticlesEffect,
-  loadRoomModel
+  loadRoomModel,
+  loadSimpleModel
 });
 
 // 生命周期钩子
@@ -118,10 +132,12 @@ watch(() => props.currentDragModel, handleDragModelChange);
   background-color: #f5f5f5;
 }
 
-.scene-controls{
-  position: fixed;   /* 固定定位 */
+.scene-controls {
+  position: fixed;
+  /* 固定定位 */
   top: 0;
-  left: 50%;         /* 先移到中间 */
+  left: 50%;
+  /* 先移到中间 */
   transform: translateX(-50%);
   z-index: 100;
   padding: 10px 10px;

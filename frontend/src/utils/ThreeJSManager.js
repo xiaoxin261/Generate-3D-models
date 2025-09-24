@@ -271,18 +271,16 @@ class ThreeJSManager {
 
     console.log('加载房间模型:', roomModel);
 
+    // 移除旧的房间模型
+    if (this.roomMesh) {
+      this.scene.remove(this.roomMesh);
+      this.roomMesh.geometry?.dispose?.();
+      this.roomMesh.material?.dispose?.();
+      this.roomMesh = null;
+    }
+
     // 调用loadAndPlaceModel加载房间模型并传递缩放参数
     this.loadAndPlaceModel(roomModel, scale);
-    // 加载完再微调相机
-    const box = new THREE.Box3().setFromObject(object);
-    const center = box.getCenter(new THREE.Vector3());
-    const size = box.getSize(new THREE.Vector3());
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const dist = maxDim * 2;                     // 2 倍盒对角线
-    this.camera.position.set(center.x + dist, center.y + dist, center.z + dist);
-    this.camera.lookAt(center);
-    this.controls.target.copy(center);
-    this.controls.update();
   }
 
   // 加载并放置模型
@@ -290,12 +288,6 @@ class ThreeJSManager {
     try {
       // 检查是否有模型URL
       if (modelData.modelUrl) {
-        // 移除旧房间
-        if (this.roomMesh) {
-          this.scene.remove(this.roomMesh);
-          this.roomMesh.geometry.dispose();
-          this.roomMesh.material.dispose();
-        }
         // 根据文件格式选择加载器
         if (modelData.modelUrl.toLowerCase().endsWith('.obj') || modelData.format === 'obj') {
           // 使用OBJLoader加载OBJ模型
@@ -329,23 +321,28 @@ class ThreeJSManager {
           objLoader.load(
             modelData.modelUrl,
             (model) => {
-              // 设置模型位置
-              model.position.set(0, 0, 0);
+              // 设置模型位置 - 房间模型在原点，物品模型在(5, 0, 5)
+          if (modelData.id === 'room-model') {
+            model.position.set(0, 0, 0);
+            this.roomMesh = model; // 保存房间模型引用
+          } else {
+            model.position.set(5, 0, 5);
+          }
 
-              // 设置模型缩放
-              model.scale.set(scale, scale, scale);
+          // 设置模型缩放
+          model.scale.set(scale, scale, scale);
 
-              // 添加到场景
-              this.scene.add(model);
-              if (modelData.id !== 'room-model') {
-                this.sceneModels.push({
-                  id: modelData.id || Date.now(),
-                  name: modelData.name || '模型',
-                  mesh: model
-                });
-                // 更新DragControls以包含新模型
-                this.updateDragControls();
-              }
+          // 添加到场景
+          this.scene.add(model);
+          if (modelData.id !== 'room-model') {
+            this.sceneModels.push({
+              id: modelData.id || Date.now(),
+              name: modelData.name || '模型',
+              mesh: model
+            });
+            // 更新DragControls以包含新模型
+            this.updateDragControls();
+          }
 
 
               // 触发放置事件
@@ -377,8 +374,13 @@ class ThreeJSManager {
 
           const model = gltf.scene;
 
-          // 设置模型位置
-          model.position.set(0, 0.5, 0);
+          // 设置模型位置 - 房间模型在原点，物品模型在(5, 0, 5)
+          if (modelData.id === 'room-model') {
+            model.position.set(0, 0.5, 0);
+            this.roomMesh = model; // 保存房间模型引用
+          } else {
+            model.position.set(5, 0, 5);
+          }
 
           // 设置模型缩放
           model.scale.set(scale, scale, scale);
@@ -425,8 +427,13 @@ class ThreeJSManager {
           // 创建网格
           const model = new THREE.Mesh(geometry, material);
 
-          // 设置模型位置和缩放
-          model.position.set(0, 0.5, 0);
+          // 设置模型位置和缩放 - 房间模型在原点，物品模型在(5, 0, 5)
+          if (modelData.id === 'room-model') {
+            model.position.set(0, 0.5, 0);
+            this.roomMesh = model; // 保存房间模型引用
+          } else {
+            model.position.set(5, 0, 5);
+          }
           model.scale.set(scale, scale, scale); // 使用传入的缩放参数
 
           // 添加到场景
@@ -457,19 +464,28 @@ class ThreeJSManager {
       });
       const model = new THREE.Mesh(geometry, material);
 
-      // 设置模型位置
-      model.position.set(0, 0.5, 0);
+      // 设置模型位置 - 房间模型在原点，物品模型在(5, 0, 5)
+      if (modelData.id === 'room-model') {
+        model.position.set(0, 0.5, 0);
+        this.roomMesh = model; // 保存房间模型引用
+      } else {
+        model.position.set(5, 0, 5);
+      }
 
       // 设置模型缩放
       model.scale.set(scale, scale, scale);
 
       // 添加到场景
       this.scene.add(model);
-      this.sceneModels.push({
-        id: modelData.id || Date.now(),
-        name: modelData.name || '模型',
-        mesh: model
-      });
+      if (modelData.id !== 'room-model') {
+        this.sceneModels.push({
+          id: modelData.id || Date.now(),
+          name: modelData.name || '模型',
+          mesh: model
+        });
+        // 更新DragControls以包含新模型
+        this.updateDragControls();
+      }
 
       // 触发放置事件
       if (this.onModelPlaced) {
@@ -487,19 +503,28 @@ class ThreeJSManager {
       });
       const model = new THREE.Mesh(geometry, material);
 
-      // 设置模型位置
-      model.position.set(0, 0.5, 0);
+      // 设置模型位置 - 房间模型在原点，物品模型在(5, 0, 5)
+      if (modelData.id === 'room-model') {
+        model.position.set(0, 0.5, 0);
+        this.roomMesh = model; // 保存房间模型引用
+      } else {
+        model.position.set(5, 0, 5);
+      }
 
       // 设置模型缩放
       model.scale.set(scale, scale, scale);
 
       // 添加到场景
       this.scene.add(model);
-      this.sceneModels.push({
-        id: modelData.id || Date.now(),
-        name: modelData.name || '模型',
-        mesh: model
-      });
+      if (modelData.id !== 'room-model') {
+        this.sceneModels.push({
+          id: modelData.id || Date.now(),
+          name: modelData.name || '模型',
+          mesh: model
+        });
+        // 更新DragControls以包含新模型
+        this.updateDragControls();
+      }
 
       // 触发放置事件
       if (this.onModelPlaced) {

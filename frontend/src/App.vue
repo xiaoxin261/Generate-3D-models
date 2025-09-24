@@ -1,16 +1,6 @@
 <template>
   <div class="app-container">
 
-
-
-    <!-- 主要内容区域 -->
-    <!-- 左侧模型列表 -->
-    <!-- <ModelList 
-        :models="models"
-        @drag-start="handleDragStart"
-        @remove-model="removeModel"
-      /> -->
-
     <!-- 中央3D场景区域 -->
     <div class="scene-container">
       <ThreeScene ref="threeSceneRef" :room-params="roomParams" :current-drag-model="currentDragModel"
@@ -24,27 +14,14 @@
     <!-- 右侧房间参数设置区域 -->
     <div class="room-generate-section">
       <RoomGenerator />
-      <button @click="generateRoomModel(1)">生成房间模型</button>
+      <button @click="generateModel(1)">生成模型</button>
     </div>
-
-    <!-- 导出格式选择对话框 -->
-    <!-- <div v-if="showExportDialog" class="dialog-overlay" @click="closeExportDialog">
-      <div class="dialog-content" @click.stop>
-        <h3>选择导出格式</h3>
-        <div class="export-formats">
-          <button v-for="format in exportFormats" :key="format" @click="confirmExport(format)">
-            {{ format }}
-          </button>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import ModelGenerator from './components/ModelGenerator.vue';
-import ModelList from './components/ModelList.vue';
 import ThreeScene from './components/ThreeScene.vue';
 import RoomGenerator from './components/RoomGenerator.vue';
 
@@ -69,7 +46,6 @@ const roomModelUrl = ref(null);
 
 // 导出相关
 const showExportDialog = ref(false);
-const exportFormats = ref(['GLB', 'OBJ', 'STL']);
 
 // 组件引用
 const threeSceneRef = ref(null);
@@ -96,6 +72,28 @@ const generateRoomModel = async (scale) => {
     }
   } catch (error) {
     console.error('生成房间模型失败:', error);
+  }
+};
+
+const generateModel = async (scale) => {
+  try {
+    // 在实际应用中，这里应该调用API生成房间模型
+    // 这里使用模拟数据，假设有一个OBJ格式的房间模型
+    // 注意：在真实环境中，这里应该是一个有效的URL
+    const mockModelUrl = '/modals/mock.obj';
+    
+    console.log('房间模型URL生成成功:', mockModelUrl);
+    
+    // 如果ThreeScene组件已经挂载
+    if (threeSceneRef.value) {
+      // 直接调用ThreeScene的方法加载普通模型
+      if (typeof threeSceneRef.value.loadSimpleModel === 'function') {
+        console.log('准备加载普通模型');
+        threeSceneRef.value.loadSimpleModel(mockModelUrl, scale);
+      }
+    }
+  } catch (error) {
+    console.error('生成普通模型失败:', error);
   }
 };
 
