@@ -168,10 +168,7 @@ const simulateModelGeneration = (params) => {
 
       models.value.push(newModel);
 
-      // 添加粒子效果
-      if (threeSceneRef.value) {
-        threeSceneRef.value.addParticlesEffect();
-      }
+
     }
   }, 200);
 };
@@ -188,10 +185,7 @@ const handleGeneratedModel = (resultFile, params) => {
 
   models.value.push(newModel);
 
-  // 添加粒子效果
-  if (threeSceneRef.value) {
-    threeSceneRef.value.addParticlesEffect();
-  }
+
 };
 
 // 拖拽开始
