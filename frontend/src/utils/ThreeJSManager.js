@@ -328,25 +328,25 @@ class ThreeJSManager {
           const objLoader = new OBJLoader();
           objLoader.load(
             modelData.modelUrl,
-            (object) => {
+            (model) => {
               // 设置模型位置
-              object.position.set(0, 0, 0);
+              model.position.set(0, 0, 0);
 
               // 设置模型缩放
-              object.scale.set(scale, scale, scale);
+              model.scale.set(scale, scale, scale);
 
               // 添加到场景
-              this.scene.add(object);
-              this.sceneModels.push({
-                id: modelData.id || Date.now(),
-                name: modelData.name || '模型',
-                mesh: object
-              });
+              this.scene.add(model);
+              if (modelData.id !== 'room-model') {
+                this.sceneModels.push({
+                  id: modelData.id || Date.now(),
+                  name: modelData.name || '模型',
+                  mesh: model
+                });
+                // 更新DragControls以包含新模型
+                this.updateDragControls();
+              }
 
-
-
-              // 更新DragControls以包含新模型
-              this.updateDragControls();
 
               // 触发放置事件
               if (this.onModelPlaced) {
@@ -385,16 +385,15 @@ class ThreeJSManager {
 
           // 添加到场景
           this.scene.add(model);
-          this.sceneModels.push({
-            id: modelData.id || Date.now(),
-            name: modelData.name || '模型',
-            mesh: model
-          });
-
-
-
-          // 更新DragControls以包含新模型
-          this.updateDragControls();
+          if (modelData.id !== 'room-model') {
+            this.sceneModels.push({
+              id: modelData.id || Date.now(),
+              name: modelData.name || '模型',
+              mesh: model
+            });
+            // 更新DragControls以包含新模型
+            this.updateDragControls();
+          }
 
           // 触发放置事件
           if (this.onModelPlaced) {
@@ -432,14 +431,15 @@ class ThreeJSManager {
 
           // 添加到场景
           this.scene.add(model);
-          this.sceneModels.push({
-            id: modelData.id || Date.now(),
-            name: modelData.name || '模型',
-            mesh: model
-          });
-
-          // 更新DragControls以包含新模型
-          this.updateDragControls();
+          if (modelData.id !== 'room-model') {
+            this.sceneModels.push({
+              id: modelData.id || Date.now(),
+              name: modelData.name || '模型',
+              mesh: model
+            });
+            // 更新DragControls以包含新模型
+            this.updateDragControls();
+          }
 
           // 触发放置事件
           if (this.onModelPlaced) {
