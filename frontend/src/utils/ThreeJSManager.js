@@ -51,7 +51,7 @@ class ThreeJSManager {
     // 创建相机
     this.camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
     this.camera.position.set(5, 5, 5);
-    this.camera.lookAt(0, 0, 0);
+    this.camera.lookAt(0, 5, 0);
 
     // 添加光源
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
@@ -71,9 +71,9 @@ class ThreeJSManager {
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.05;
 
-    // 添加坐标轴辅助线
-    const axesHelper = new THREE.AxesHelper(0);
-    this.scene.add(axesHelper);
+    // // 添加坐标轴辅助线
+    // const axesHelper = new THREE.AxesHelper(10);
+    // this.scene.add(axesHelper);
 
     // 添加地面网格
     const gridHelper = new THREE.GridHelper(100, 100);
@@ -283,6 +283,8 @@ class ThreeJSManager {
 
     // 调用loadAndPlaceModel加载房间模型并传递缩放参数
     this.loadAndPlaceModel(roomModel, scale);
+    this.controls.target.set(0, scale/5, 0);   // 控制“相机轨道中心”
+    this.controls.update();              // 改完必须 update
   }
 
   // 加载并放置模型

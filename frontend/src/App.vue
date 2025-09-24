@@ -1,22 +1,31 @@
 <template>
-  <div class="app-container">
+  <div class="app">
+    <div class="header">
+      <Header />
+    </div>
+    <div class="app-container">
 
-    <!-- 中央3D场景区域 -->
-    <div class="scene-container">
-      <ThreeScene ref="threeSceneRef" :room-params="roomParams" :current-drag-model="currentDragModel"
-        :room-model-url="roomModelUrl"
-        @export-models="showExportDialog = true" />
-    </div>
-    <!-- 左侧模型生成区域 -->
-    <div class="model-generate-section">
-      <ModelGenerator :is-generating="isGenerating" :progress="progress" @generate="handleGenerateModel" />
-    </div>
-    <!-- 右侧房间参数设置区域 -->
-    <div class="room-generate-section">
-      <RoomGenerator />
-      <button @click="generateModel(1)">生成模型</button>
+      <!-- 中央3D场景区域 -->
+      <div class="scene-container">
+        <ThreeScene ref="threeSceneRef" :room-params="roomParams" :current-drag-model="currentDragModel"
+          :room-model-url="roomModelUrl" @export-models="showExportDialog = true" />
+      </div>
+      <!-- 左侧模型生成区域 -->
+      <div class="model-generate-section">
+        <ModelGenerator :is-generating="isGenerating" :progress="progress" @generate="handleGenerateModel" />
+      </div>
+      <!-- 右侧房间参数设置区域 -->
+      <div class="room-generate-section">
+        <RoomGenerator />
+        <button @click="generateModel(1)">生成模型</button>
+      </div>
+      <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">生成中...</div>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script setup>
@@ -24,6 +33,7 @@ import { ref, onMounted } from 'vue';
 import ModelGenerator from './components/ModelGenerator.vue';
 import ThreeScene from './components/ThreeScene.vue';
 import RoomGenerator from './components/RoomGenerator.vue';
+import Header from './components/Header.vue';
 
 // 生成状态
 const isGenerating = ref(false);
@@ -54,19 +64,21 @@ const threeSceneRef = ref(null);
 const generateRoomModel = async (scale) => {
   try {
     // 在实际应用中，这里应该调用API生成房间模型
-    // 这里使用模拟数据，假设有一个OBJ格式的房间模型
-    // 注意：在真实环境中，这里应该是一个有效的URL
+    // 这里使用模拟数据，假设有一个OBJ格式的房间模型和对应的MTL纹理文件
+    // 注意：在真实环境中，这里应该是有效的URL
     const mockRoomModelUrl = '/modals/mock.obj';
-    
+    const mockRoomMtlUrl = '/modals/mock.mtl';
+
     roomModelUrl.value = mockRoomModelUrl;
-    
+
     console.log('房间模型URL生成成功:', mockRoomModelUrl);
-    
+    console.log('房间模型MTL URL生成成功:', mockRoomMtlUrl);
+
     // 如果ThreeScene组件已经挂载，可以立即加载房间模型
     if (threeSceneRef.value && roomModelUrl.value) {
-      // 直接调用ThreeScene的方法加载房间模型
+      // 直接调用ThreeScene的方法加载房间模型，并传递MTL文件路径
       if (typeof threeSceneRef.value.loadRoomModel === 'function') {
-        threeSceneRef.value.loadRoomModel(mockRoomModelUrl, scale);
+        threeSceneRef.value.loadRoomModel(mockRoomModelUrl, mockRoomMtlUrl, scale);
       }
       console.log('准备加载房间模型');
     }
@@ -77,19 +89,22 @@ const generateRoomModel = async (scale) => {
 
 const generateModel = async (scale) => {
   try {
-    // 在实际应用中，这里应该调用API生成房间模型
-    // 这里使用模拟数据，假设有一个OBJ格式的房间模型
-    // 注意：在真实环境中，这里应该是一个有效的URL
+    // 在实际应用中，这里应该调用API生成普通模型
+    // 这里使用模拟数据，假设有一个OBJ格式的普通模型和对应的MTL纹理文件
+    // 注意：在真实环境中，这里应该是有效的URL
     const mockModelUrl = '/modals/mock.obj';
-    
-    console.log('房间模型URL生成成功:', mockModelUrl);
-    
+    const mockModelMtlUrl = '/modals/mock.mtl';
+
+    console.log('普通模型URL生成成功:', mockModelUrl);
+    console.log('普通模型MTL URL生成成功:', mockModelMtlUrl);
+
     // 如果ThreeScene组件已经挂载
     if (threeSceneRef.value) {
       // 直接调用ThreeScene的方法加载普通模型
       if (typeof threeSceneRef.value.loadSimpleModel === 'function') {
         console.log('准备加载普通模型');
-        threeSceneRef.value.loadSimpleModel(mockModelUrl, scale);
+        // 注意：loadSimpleModel方法目前不支持直接传递MTL文件，我们需要修改它
+        threeSceneRef.value.loadSimpleModel(mockModelUrl, scale, mockModelMtlUrl);
       }
     }
   } catch (error) {
@@ -223,6 +238,9 @@ const closeExportDialog = () => {
 </script>
 
 <style scoped>
+.header {
+  height: 96px;
+}
 .app-container {
   position: relative;
   height: 100vh;
