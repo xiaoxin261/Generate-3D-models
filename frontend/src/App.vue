@@ -17,7 +17,7 @@
       <!-- 右侧房间参数设置区域 -->
       <div class="room-generate-section">
         <RoomGenerator />
-        <button @click="generateModel(1)">生成模型</button>
+        <el-button v-loading.fullscreen.lock="fullscreenLoading" type="primary" @click="generateModel(1)">生成模型</el-button>
       </div>
       <div class="loading-container">
         <div class="loading-spinner"></div>
@@ -60,6 +60,8 @@ const showExportDialog = ref(false);
 // 组件引用
 const threeSceneRef = ref(null);
 
+const fullscreenLoading = ref(false);
+
 // 生成房间模型
 const generateRoomModel = async (scale) => {
   try {
@@ -92,6 +94,11 @@ const generateModel = async (scale) => {
     // 在实际应用中，这里应该调用API生成普通模型
     // 这里使用模拟数据，假设有一个OBJ格式的普通模型和对应的MTL纹理文件
     // 注意：在真实环境中，这里应该是有效的URL
+    fullscreenLoading.value = true;
+    console.log('生成模型按钮点击');
+    setTimeout(() => {
+      fullscreenLoading.value = false;
+    }, 2000)
     const mockModelUrl = '/modals/mock.obj';
     const mockModelMtlUrl = '/modals/mock.mtl';
 
@@ -241,6 +248,7 @@ const closeExportDialog = () => {
 .header {
   height: 96px;
 }
+
 .app-container {
   position: relative;
   height: 100vh;
