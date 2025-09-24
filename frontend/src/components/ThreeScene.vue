@@ -60,16 +60,17 @@ const generateRoom = () => {
 };
 
 // 房间模型加载
-const loadRoomModel = (modelUrl, scale = 10) => {
-  threeManager.loadRoomModel(modelUrl, scale);
+const loadRoomModel = (modelUrl, mtlUrl, scale = 10) => {
+  threeManager.loadRoomModel(modelUrl, mtlUrl, scale);
 };
 
 // 普通模型加载
-const loadSimpleModel = (modelUrl, scale = 1) => {
+const loadSimpleModel = (modelUrl, scale = 1, mtlUrl = null) => {
   const model = {
     id: 'simple-model',
     name: '普通模型',
     modelUrl: modelUrl,
+    mtlUrl: mtlUrl, // 添加MTL文件路径
     format: modelUrl.toLowerCase().includes('.obj') ? 'obj' :
       modelUrl.toLowerCase().includes('.gltf') || modelUrl.toLowerCase().includes('.glb') ? 'gltf' :
         modelUrl.toLowerCase().includes('.stl') ? 'stl' : 'obj'
@@ -135,7 +136,7 @@ watch(() => props.currentDragModel, handleDragModelChange);
 .scene-controls {
   position: fixed;
   /* 固定定位 */
-  top: 0;
+  top: 100px;
   left: 50%;
   /* 先移到中间 */
   transform: translateX(-50%);

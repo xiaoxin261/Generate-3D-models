@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
 import { OBJExporter } from 'three/examples/jsm/exporters/OBJExporter.js';
@@ -71,11 +72,11 @@ class ThreeJSManager {
     this.controls.dampingFactor = 0.05;
 
     // 添加坐标轴辅助线
-    const axesHelper = new THREE.AxesHelper(10);
+    const axesHelper = new THREE.AxesHelper(0);
     this.scene.add(axesHelper);
 
     // 添加地面网格
-    const gridHelper = new THREE.GridHelper(10, 10);
+    const gridHelper = new THREE.GridHelper(100, 100);
     this.scene.add(gridHelper);
 
     // 添加拖拽平面
@@ -256,7 +257,7 @@ class ThreeJSManager {
   }
 
   // 房间模型加载
-  loadRoomModel(modelUrl, scale = 1) {
+  loadRoomModel(modelUrl, mtlUrl, scale = 1) {
     if (!modelUrl) return;
 
     // 创建房间模型数据结构
@@ -264,6 +265,7 @@ class ThreeJSManager {
       id: 'room-model',
       name: '房间模型',
       modelUrl: modelUrl,
+      mtlUrl: mtlUrl,
       format: modelUrl.toLowerCase().includes('.obj') ? 'obj' :
         modelUrl.toLowerCase().includes('.gltf') || modelUrl.toLowerCase().includes('.glb') ? 'gltf' :
           modelUrl.toLowerCase().includes('.stl') ? 'stl' : 'obj'
@@ -314,49 +316,144 @@ class ThreeJSManager {
           //   mesh: model
           // });
 
-          // // 添加粒子动效
-          // this.addParticleEffect(model.position);
 
-          const objLoader = new OBJLoader();
-          objLoader.load(
-            modelData.modelUrl,
-            (model) => {
-              // 设置模型位置 - 房间模型在原点，物品模型在(5, 0, 5)
-          if (modelData.id === 'room-model') {
-            model.position.set(0, 0, 0);
-            this.roomMesh = model; // 保存房间模型引用
-          } else {
-            model.position.set(5, 0, 5);
-          }
+          if (modelData.mtlUrl) {
+            // 如果有MTL文件，先加载材质
+            const mtlLoader = new MTLLoader();
+            mtlLoader.load(
+              modelData.mtlUrl,
+              (materials) => {
+                materials.preload();
+                const objLoader = new OBJLoader();
+                objLoader.setMaterials(materials);
+                objLoader.load(
+                  modelData.modelUrl,
+                  (model) => {
+                    // 设置模型位置 - 房间模型在原点，物品模型在(5, 0, 5)
+                    if (modelData.id === 'room-model') {
+                      model.position.set(0, 0, 0);
+                      this.roomMesh = model; // 保存房间模型引用
+                    } else {
+                      model.position.set(5, 0, 5);
+                    }
 
-          // 设置模型缩放
-          model.scale.set(scale, scale, scale);
+                    // 设置模型缩放
+                    model.scale.set(scale, scale, scale);
 
-          // 添加到场景
-          this.scene.add(model);
-          if (modelData.id !== 'room-model') {
-            this.sceneModels.push({
-              id: modelData.id || Date.now(),
-              name: modelData.name || '模型',
-              mesh: model
-            });
-            // 更新DragControls以包含新模型
-            this.updateDragControls();
-          }
+                    // 添加到场景
+                    this.scene.add(model);
+                    if (modelData.id !== 'room-model') {
+                      this.sceneModels.push({
+                        id: modelData.id || Date.now(),
+                        name: modelData.name || '模型',
+                        mesh: model
+                      });
+                      // 更新DragControls以包含新模型
+                      this.updateDragControls();
+                    }
 
+                    // 触发放置事件
+                    if (this.onModelPlaced) {
+                      this.onModelPlaced(modelData);
+                    }
+                  },
+                  (xhr) => {
+                    console.log((xhr.loaded / xhr.total * 100) + '% 已加载');
+                  },
+                  (error) => {
+                    console.error('OBJ模型加载失败:', error);
+                  }
+                );
+              },
+              (xhr) => {
+                console.log((xhr.loaded / xhr.total * 100) + '% 材质已加载');
+              },
+              (error) => {
+                console.error('MTL材质加载失败:', error);
+                // 即使材质加载失败，也尝试加载OBJ模型
+                const objLoader = new OBJLoader();
+                objLoader.load(
+                  modelData.modelUrl,
+                  (model) => {
+                    // 设置模型位置 - 房间模型在原点，物品模型在(5, 0, 5)
+                    if (modelData.id === 'room-model') {
+                      model.position.set(0, 0, 0);
+                      this.roomMesh = model; // 保存房间模型引用
+                    } else {
+                      model.position.set(5, 0, 5);
+                    }
 
-              // 触发放置事件
-              if (this.onModelPlaced) {
-                this.onModelPlaced(modelData);
+                    // 设置模型缩放
+                    model.scale.set(scale, scale, scale);
+
+                    // 添加到场景
+                    this.scene.add(model);
+                    if (modelData.id !== 'room-model') {
+                      this.sceneModels.push({
+                        id: modelData.id || Date.now(),
+                        name: modelData.name || '模型',
+                        mesh: model
+                      });
+                      // 更新DragControls以包含新模型
+                      this.updateDragControls();
+                    }
+
+                    // 触发放置事件
+                    if (this.onModelPlaced) {
+                      this.onModelPlaced(modelData);
+                    }
+                  },
+                  (xhr) => {
+                    console.log((xhr.loaded / xhr.total * 100) + '% 已加载');
+                  },
+                  (error) => {
+                    console.error('OBJ模型加载失败:', error);
+                  }
+                );
               }
-            },
-            (xhr) => {
-              console.log((xhr.loaded / xhr.total * 100) + '% 已加载');
-            },
-            (error) => {
-              console.error('OBJ模型加载失败:', error);
-            }
-          );
+            );
+          } else {
+            // 如果没有MTL文件，直接加载OBJ模型
+            const objLoader = new OBJLoader();
+            objLoader.load(
+              modelData.modelUrl,
+              (model) => {
+                // 设置模型位置 - 房间模型在原点，物品模型在(5, 0, 5)
+                if (modelData.id === 'room-model') {
+                  model.position.set(0, 0, 0);
+                  this.roomMesh = model; // 保存房间模型引用
+                } else {
+                  model.position.set(5, 0, 5);
+                }
+
+                // 设置模型缩放
+                model.scale.set(scale, scale, scale);
+
+                // 添加到场景
+                this.scene.add(model);
+                if (modelData.id !== 'room-model') {
+                  this.sceneModels.push({
+                    id: modelData.id || Date.now(),
+                    name: modelData.name || '模型',
+                    mesh: model
+                  });
+                  // 更新DragControls以包含新模型
+                  this.updateDragControls();
+                }
+
+                // 触发放置事件
+                if (this.onModelPlaced) {
+                  this.onModelPlaced(modelData);
+                }
+              },
+              (xhr) => {
+                console.log((xhr.loaded / xhr.total * 100) + '% 已加载');
+              },
+              (error) => {
+                console.error('OBJ模型加载失败:', error);
+              }
+            );
+          }
           return;
         } else if (modelData.modelUrl.toLowerCase().endsWith('.gltf') || modelData.modelUrl.toLowerCase().endsWith('.glb') || modelData.format === 'gltf') {
           // 使用GLTFLoader加载GLTF/GLB模型
