@@ -108,7 +108,6 @@ watch(() => props.currentDragModel, handleDragModelChange);
 
 <style scoped>
 .three-scene {
-  position: relative;
   width: 100%;
   height: 100%;
 }
@@ -116,9 +115,6 @@ watch(() => props.currentDragModel, handleDragModelChange);
 .scene-container {
   height: 100vh;
   width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
   background-color: #f5f5f5;
 }
 

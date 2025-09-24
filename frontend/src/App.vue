@@ -24,6 +24,7 @@
     <!-- 右侧房间参数设置区域 -->
     <div class="room-generate-section">
       <RoomGenerator />
+      <button @click="generateRoomModel(1)">生成房间模型</button>
     </div>
 
     <!-- 导出格式选择对话框 -->
@@ -74,7 +75,7 @@ const exportFormats = ref(['GLB', 'OBJ', 'STL']);
 const threeSceneRef = ref(null);
 
 // 生成房间模型
-const generateRoomModel = async () => {
+const generateRoomModel = async (scale) => {
   try {
     // 在实际应用中，这里应该调用API生成房间模型
     // 这里使用模拟数据，假设有一个OBJ格式的房间模型
@@ -89,7 +90,7 @@ const generateRoomModel = async () => {
     if (threeSceneRef.value && roomModelUrl.value) {
       // 直接调用ThreeScene的方法加载房间模型
       if (typeof threeSceneRef.value.loadRoomModel === 'function') {
-        threeSceneRef.value.loadRoomModel(mockRoomModelUrl, 10);
+        threeSceneRef.value.loadRoomModel(mockRoomModelUrl, scale);
       }
       console.log('准备加载房间模型');
     }
@@ -127,7 +128,7 @@ const handleGenerateModel = (params) => {
 // 生命周期钩子
 onMounted(() => {
   // 组件挂载后，生成房间模型
-  generateRoomModel();
+  generateRoomModel(10);
 });
 
 // 调用腾讯混元API

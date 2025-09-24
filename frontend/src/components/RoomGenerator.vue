@@ -41,6 +41,7 @@ const roomParams = reactive({
 const generateRoom = () => {
     console.log('生成房间参数:', roomParams);
     // 这里可以添加实际的房间生成逻辑
+    
 };
 </script>
 

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js';
@@ -14,6 +15,7 @@ class ThreeJSManager {
     this.camera = null;
     this.renderer = null;
     this.controls = null;
+    this.dragControls = null;
     this.roomMesh = null;
     this.draggingObject = null;
     this.draggingPlane = null;
@@ -26,12 +28,12 @@ class ThreeJSManager {
     // 容器引用
     this.container = null;
 
-    // 模型列表和粒子系统
+    // 模型列表
     this.sceneModels = [];
-    this.particles = [];
 
     // 事件回调
     this.onModelPlaced = null;
+    this.onModelDragged = null;
   }
 
   // 初始化3D场景
@@ -79,34 +81,86 @@ class ThreeJSManager {
     // 添加拖拽平面
     this.draggingPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 
-    // 添加鼠标事件监听
+    // 初始化DragControls
+    this._initDragControls();
+
+    // 添加其他必要的鼠标事件监听
     this._bindEvents();
 
     // 开始渲染循环
     this.animate();
   }
 
+  // 初始化DragControls
+  _initDragControls() {
+    // 从sceneModels中获取所有mesh对象
+    const draggableObjects = this.sceneModels.map(m => m.mesh);
+
+    // 创建DragControls实例
+    this.dragControls = new DragControls(draggableObjects, this.camera, this.renderer.domElement);
+
+    // 配置DragControls
+    this.dragControls.enabled = true;
+    this.dragControls.ignoreRaycastObjects = [this.roomMesh];
+
+    // 添加拖拽事件监听
+    this.dragControls.addEventListener('dragstart', (event) => {
+      // 当开始拖拽时禁用轨道控制器
+      this.controls.enabled = false;
+      this.isDragging = true;
+      this.draggingObject = event.object;
+    });
+
+    this.dragControls.addEventListener('drag', (event) => {
+      // 确保模型始终保持在地面上
+      if (event.object) {
+        const box = new THREE.Box3().setFromObject(event.object);
+        const footY = box.min.y;
+
+        // // 如果模型底部低于地面，调整它的位置
+        // if (footY < 0) {
+        //   event.object.position.y += Math.abs(footY);
+        // }
+      }
+
+      // 触拖动事件回调
+      if (this.onModelDragged) {
+        this.onModelDragged(event.object);
+      }
+    });
+
+    this.dragControls.addEventListener('dragend', (event) => {
+      // 当拖拽结束时重新启用轨道控制器
+      this.controls.enabled = true;
+      this.isDragging = false;
+      this.draggingObject = null;
+    });
+  }
+
+  // 更新DragControls的可拖拽对象列表（支持动态添加模型）
+  updateDragControls() {
+    if (!this.dragControls) return;
+
+    // 移除旧的DragControls
+    this.dragControls.dispose();
+
+    // 创建新的DragControls实例，使用更新后的模型列表
+    this._initDragControls();
+  }
+
   // 绑定事件
   _bindEvents() {
     if (!this.container) return;
 
-    const onMouseDown = (event) => this.handleMouseDown(event);
-    const onMouseMove = (event) => this.handleMouseMove(event);
-    const onMouseUp = () => this.handleMouseUp();
+    // 我们已经在DragControls中处理了拖拽事件，这里只保留必要的其他事件
     const onWheel = (event) => this.handleWheel(event);
     const onWindowResize = () => this.handleWindowResize();
 
-    this.container.addEventListener('mousedown', onMouseDown);
-    this.container.addEventListener('mousemove', onMouseMove);
-    this.container.addEventListener('mouseup', onMouseUp);
     this.container.addEventListener('wheel', onWheel);
     window.addEventListener('resize', onWindowResize);
 
     // 保存事件处理器引用以便后续清理
     this._eventHandlers = {
-      onMouseDown,
-      onMouseMove,
-      onMouseUp,
       onWheel,
       onWindowResize
     };
@@ -202,7 +256,7 @@ class ThreeJSManager {
   }
 
   // 房间模型加载
-  loadRoomModel(modelUrl, scale = 10) {
+  loadRoomModel(modelUrl, scale = 1) {
     if (!modelUrl) return;
 
     // 创建房间模型数据结构
@@ -219,6 +273,16 @@ class ThreeJSManager {
 
     // 调用loadAndPlaceModel加载房间模型并传递缩放参数
     this.loadAndPlaceModel(roomModel, scale);
+    // 加载完再微调相机
+    const box = new THREE.Box3().setFromObject(object);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const dist = maxDim * 2;                     // 2 倍盒对角线
+    this.camera.position.set(center.x + dist, center.y + dist, center.z + dist);
+    this.camera.lookAt(center);
+    this.controls.target.copy(center);
+    this.controls.update();
   }
 
   // 加载并放置模型
@@ -279,8 +343,10 @@ class ThreeJSManager {
                 mesh: object
               });
 
-              // 添加粒子动效
-              this.addParticleEffect(object.position);
+
+
+              // 更新DragControls以包含新模型
+              this.updateDragControls();
 
               // 触发放置事件
               if (this.onModelPlaced) {
@@ -325,8 +391,10 @@ class ThreeJSManager {
             mesh: model
           });
 
-          // 添加粒子动效
-          this.addParticleEffect(model.position);
+
+
+          // 更新DragControls以包含新模型
+          this.updateDragControls();
 
           // 触发放置事件
           if (this.onModelPlaced) {
@@ -370,8 +438,8 @@ class ThreeJSManager {
             mesh: model
           });
 
-          // 添加粒子动效
-          this.addParticleEffect(model.position);
+          // 更新DragControls以包含新模型
+          this.updateDragControls();
 
           // 触发放置事件
           if (this.onModelPlaced) {
@@ -402,9 +470,6 @@ class ThreeJSManager {
         name: modelData.name || '模型',
         mesh: model
       });
-
-      // 添加粒子动效
-      this.addParticleEffect(model.position);
 
       // 触发放置事件
       if (this.onModelPlaced) {
@@ -441,132 +506,6 @@ class ThreeJSManager {
         this.onModelPlaced(modelData);
       }
     }
-  }
-
-  // 添加粒子动效
-  addParticleEffect(position) {
-    const particleCount = 50;
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesPosition = new Float32Array(particleCount * 3);
-    const particlesColor = new Float32Array(particleCount * 3);
-
-    // 初始化粒子位置和颜色
-    for (let i = 0; i < particleCount; i++) {
-      const i3 = i * 3;
-
-      // 在模型位置周围随机分布
-      particlesPosition[i3] = position.x + (Math.random() - 0.5) * 0.5;
-      particlesPosition[i3 + 1] = position.y + (Math.random() - 0.5) * 0.5;
-      particlesPosition[i3 + 2] = position.z + (Math.random() - 0.5) * 0.5;
-
-      // 随机颜色
-      particlesColor[i3] = Math.random();
-      particlesColor[i3 + 1] = Math.random();
-      particlesColor[i3 + 2] = Math.random();
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlesPosition, 3));
-    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(particlesColor, 3));
-
-    // 创建粒子材质
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.05,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.8
-    });
-
-    // 创建粒子系统
-    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-    this.scene.add(particles);
-
-    // 保存粒子系统引用
-    this.particles.push({
-      mesh: particles,
-      startTime: Date.now()
-    });
-
-    // 为每个粒子创建动画
-    const positions = particlesGeometry.attributes.position.array;
-    const originalPositions = [...positions];
-
-    for (let i = 0; i < particleCount; i++) {
-      const i3 = i * 3;
-      const targetX = originalPositions[i3] + (Math.random() - 0.5) * 2;
-      const targetY = originalPositions[i3 + 1] + Math.random() * 2;
-      const targetZ = originalPositions[i3 + 2] + (Math.random() - 0.5) * 2;
-
-      new TWEEN.Tween({
-        x: originalPositions[i3],
-        y: originalPositions[i3 + 1],
-        z: originalPositions[i3 + 2],
-        opacity: 1
-      })
-        .to({
-          x: targetX,
-          y: targetY,
-          z: targetZ,
-          opacity: 0
-        }, 2000)
-        .onUpdate((coords) => {
-          positions[i3] = coords.x;
-          positions[i3 + 1] = coords.y;
-          positions[i3 + 2] = coords.z;
-          particlesMaterial.opacity = coords.opacity;
-          particlesGeometry.attributes.position.needsUpdate = true;
-        })
-        .onComplete(() => {
-          // 动画结束后清理粒子
-          if (this.scene) {
-            this.scene.remove(particles);
-            particlesGeometry.dispose();
-            particlesMaterial.dispose();
-            this.particles = this.particles.filter(p => p.mesh !== particles);
-          }
-        })
-        .start();
-    }
-  }
-
-  // 鼠标事件处理
-  handleMouseDown(event) {
-    this.updateMousePosition(event);
-    this.raycaster.setFromCamera(this.mouse, this.camera);
-
-    // 检查是否点击了模型
-    const intersects = this.raycaster.intersectObjects(
-      this.sceneModels.map(m => m.mesh)
-    );
-
-    if (intersects.length > 0) {
-      this.isDragging = true;
-      this.draggingObject = intersects[0].object;
-      this.controls.enabled = false;
-    }
-  }
-
-  handleMouseMove(event) {
-    if (!this.isDragging || !this.draggingObject) return;
-
-    this.updateMousePosition(event);
-    this.raycaster.setFromCamera(this.mouse, this.camera);
-
-    // 计算拖拽平面与光线的交点 - 修复版本兼容性问题
-    const ray = this.raycaster.ray;
-    const intersectPoint = new THREE.Vector3();
-    const intersects = ray.intersectPlane(this.draggingPlane, intersectPoint);
-
-    if (intersects) {
-      this.draggingObject.position.copy(intersectPoint);
-      // 确保模型底部接触地面
-      this.draggingObject.position.y = this.draggingObject.position.y + 0.5;
-    }
-  }
-
-  handleMouseUp() {
-    this.isDragging = false;
-    this.draggingObject = null;
-    this.controls.enabled = true;
   }
 
   handleWheel(event) {
@@ -730,6 +669,12 @@ class ThreeJSManager {
       window.removeEventListener('resize', this._eventHandlers.onWindowResize);
     }
 
+    // 清理DragControls
+    if (this.dragControls) {
+      this.dragControls.dispose();
+      this.dragControls = null;
+    }
+
     // 清理Three.js对象
     if (this.scene) {
       // 清理所有网格
@@ -761,7 +706,6 @@ class ThreeJSManager {
     this.controls = null;
     this.roomMesh = null;
     this.sceneModels = [];
-    this.particles = [];
     this.container = null;
     this._eventHandlers = null;
   }
