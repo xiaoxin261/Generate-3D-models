@@ -14,6 +14,7 @@
     <!-- 中央3D场景区域 -->
     <div class="scene-container">
       <ThreeScene ref="threeSceneRef" :room-params="roomParams" :current-drag-model="currentDragModel"
+        :room-model-url="roomModelUrl"
         @export-models="showExportDialog = true" />
     </div>
     <!-- 左侧模型生成区域 -->
@@ -40,7 +41,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import ModelGenerator from './components/ModelGenerator.vue';
 import ModelList from './components/ModelList.vue';
 import ThreeScene from './components/ThreeScene.vue';
@@ -54,12 +55,60 @@ const progress = ref(0);
 const models = ref([]);
 const currentDragModel = ref(null);
 
+// 房间参数
+const roomParams = ref({
+  length: 5,
+  width: 5,
+  height: 3,
+  style: 'modern'
+});
+
+// 房间模型URL
+const roomModelUrl = ref(null);
+
 // 导出相关
 const showExportDialog = ref(false);
 const exportFormats = ref(['GLB', 'OBJ', 'STL']);
 
 // 组件引用
 const threeSceneRef = ref(null);
+
+// 生成房间模型
+const generateRoomModel = async () => {
+  try {
+    // 在实际应用中，这里应该调用API生成房间模型
+    // 这里使用模拟数据，假设有一个OBJ格式的房间模型
+    // 注意：在真实环境中，这里应该是一个有效的URL
+    const mockRoomModelUrl = '/modals/mock.obj';
+    
+    roomModelUrl.value = mockRoomModelUrl;
+    
+    console.log('房间模型URL生成成功:', mockRoomModelUrl);
+    
+    // 如果ThreeScene组件已经挂载，可以立即加载房间模型
+    if (threeSceneRef.value && roomModelUrl.value) {
+      // 直接调用ThreeScene的方法加载房间模型
+      if (typeof threeSceneRef.value.loadRoomModel === 'function') {
+        threeSceneRef.value.loadRoomModel(mockRoomModelUrl, 10);
+      }
+      console.log('准备加载房间模型');
+    }
+  } catch (error) {
+    console.error('生成房间模型失败:', error);
+  }
+};
+
+// 监听房间参数变化，重新生成房间模型
+const watchRoomParams = () => {
+  // 在实际应用中，这里可以使用watch API监听roomParams的变化
+  // 这里简化处理，直接提供一个方法供RoomGenerator调用
+  generateRoomModel();
+};
+
+// 暴露给子组件的方法
+defineExpose({
+  watchRoomParams
+});
 
 // 处理模型生成
 const handleGenerateModel = (params) => {
@@ -74,6 +123,12 @@ const handleGenerateModel = (params) => {
   // 模拟API调用过程
   simulateModelGeneration(params);
 };
+
+// 生命周期钩子
+onMounted(() => {
+  // 组件挂载后，生成房间模型
+  generateRoomModel();
+});
 
 // 调用腾讯混元API
 const callHunyuanAPI = (params) => {
