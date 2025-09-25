@@ -27,8 +27,13 @@ app:
   file:
     upload-path: ./uploads/dev/
   
-  # AI服务配置（开发环境）app:
-    ai:
-      hunyuan:
+  # JWT配置
+  jwt:
+    secret: generate3d-jwt-secret-key-2024-secure-256bit-compliant-key-for-hmac-sha-algorithm
+    expiration: 86400000  # 24小时
+  
+  # AI服务配置（开发环境）
+  ai:
+    hunyuan:
       secret-id: ${HUNYUAN_SECRET_ID:AKID65sW7WjkZJ1a7eyW4c1JZinfJkxxkGah}
       secret-key: ${HUNYUAN_SECRET_KEY:PdeWDhy50kHalqDb3So4AE7mJdnpogTC}
