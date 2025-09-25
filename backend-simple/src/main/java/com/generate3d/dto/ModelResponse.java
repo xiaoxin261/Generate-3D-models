@@ -12,8 +12,17 @@ import java.time.LocalDateTime;
 @Schema(description = "模型响应")
 public class ModelResponse {
     
+    @Schema(description = "任务ID", example = "task_123456")
+    private String taskId;
+    
     @Schema(description = "模型ID", example = "model_123456")
     private String modelId;
+    
+    @Schema(description = "任务进度", example = "50")
+    private Integer progress;
+    
+    @Schema(description = "预估时间（秒）", example = "25")
+    private Integer estimatedTime;
     
     @Schema(description = "模型名称", example = "可爱的小猫咪")
     private String name;
@@ -60,8 +69,8 @@ public class ModelResponse {
     @Schema(description = "模型尺寸", example = "medium")
     private String modelSize;
     
-    @Schema(description = "模型状态", example = "1")
-    private Integer status;
+    @Schema(description = "模型状态", example = "pending")
+    private String status;
     
     @Schema(description = "是否收藏", example = "false")
     private Boolean favorite;

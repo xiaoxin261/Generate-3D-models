@@ -1,6 +1,6 @@
 # 服务器配置
 server:
-  port: 8080
+  port: 8081
   servlet:
     context-path: /api
     encoding:
@@ -127,12 +127,12 @@ app:
     upload-path: ./uploads/
     max-size: 100MB
     allowed-types: jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx,ppt,pptx,zip,rar,7z,obj,fbx,dae,3ds,max,blend
-  
+
   # AI服务配置
   ai:
     hunyuan:
-      secret-id: AKIDfCXkwxSwEhx0pRo02sZPGBLk7e4HH3bv
-      secret-key: A6oIYakiU4RcZIn48nTzJVYeaLvQvOeg
+      secret-id: AKID65sW7WjkZJ1a7eyW4c1JZinfJkxxkGah
+      secret-key: PdeWDhy50kHalqDb3So4AE7mJdnpogTC
       region: ap-beijing
       endpoint: hunyuan.tencentcloudapi.com
       timeout: 30000
