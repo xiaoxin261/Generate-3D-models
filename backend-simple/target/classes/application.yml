@@ -1,0 +1,165 @@
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+# Spring配置
+spring:
+  application:
+    name: generate-3d-backend
+  profiles:
+    active: dev
+  
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/generat?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 2751988963s
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: Generate3DHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  
+  # Redis配置
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 
+      database: 0
+      timeout: 10s
+      lettuce:
+        pool:
+          min-idle: 0
+          max-idle: 8
+          max-active: 8
+          max-wait: -1ms
+  
+  # 文件上传配置
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  
+  # Jackson配置
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+      indent-output: true
+    deserialization:
+      fail-on-unknown-properties: false
+
+# MyBatis-Plus配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.generate3d.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# 日志配置
+logging:
+  level:
+    com.generate3d: debug
+    org.springframework.security: debug
+    org.springframework.web: info
+    org.mybatis: debug
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  file:
+    name: logs/generate3d.log
+    max-size: 10MB
+    max-history: 30
+
+# Swagger配置
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  info:
+    title: Generate 3D API
+    description: 3D模型生成系统API文档
+    version: 1.0.0
+    contact:
+      name: Generate3D Team
+      email: support@generate3d.com
+
+# 应用自定义配置
+app:
+  # JWT配置
+  jwt:
+    secret: generate3d-jwt-secret-key-2024
+    expiration: 86400000 # 24小时
+    header: Authorization
+    prefix: Bearer
+  
+  # 文件存储配置
+  file:
+    upload-path: ./uploads/
+    max-size: 100MB
+    allowed-types: jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx,ppt,pptx,zip,rar,7z,obj,fbx,dae,3ds,max,blend
+  
+  # AI服务配置
+  ai:
+    hunyuan:
+      secret-id: AKIDfCXkwxSwEhx0pRo02sZPGBLk7e4HH3bv
+      secret-key: A6oIYakiU4RcZIn48nTzJVYeaLvQvOeg
+      region: ap-beijing
+      endpoint: hunyuan.tencentcloudapi.com
+      timeout: 30000
+      retry-times: 3
+      max-concurrent-requests: 10
+
+  # 存储配置（先用 OSS 直连，未配置则回退本地文件）
+  storage:
+    type: oss
+    oss:
+      endpoint: oss-cn-hangzhou.aliyuncs.com
+      bucket: generate-3d
+      access-key-id: LTAI5tKdBz6ZCab41aVcvP9t
+      access-key-secret: iOPMMYXIy5DbigEp1nLuMfoJDFCNBY
+      base-dir: models/
+      signed-url-expire-seconds: 1800
+
+# 监控配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true

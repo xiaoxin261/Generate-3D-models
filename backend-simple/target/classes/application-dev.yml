@@ -1,0 +1,35 @@
+# 开发环境配置
+server:
+  port: 8080
+
+spring:
+  # 暂无数据源配置
+  
+  # Redis配置
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 
+      database: 0
+
+# 日志配置
+logging:
+  level:
+    com.generate3d: debug
+    org.springframework.security: debug
+    org.mybatis: debug
+  file:
+    name: logs/generate3d-dev.log
+
+# 文件上传路径
+app:
+  file:
+    upload-path: ./uploads/dev/
+  
+  # AI服务配置（开发环境）
+  ai:
+    hunyuan:
+      secret-id: dev-secret-id
+      secret-key: dev-secret-key
+      region: ap-beijing

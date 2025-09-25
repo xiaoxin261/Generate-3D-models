@@ -1,0 +1,35 @@
+2025-09-24 17:00:55.121 [main] INFO  com.generate3d.Generate3DApplication - Starting Generate3DApplication using Java 21.0.4 with PID 23368 (D:\Generate-3D-models\backend-simple\target\classes started by XIAO   SA in D:\Generate-3D-models\backend-simple)
+2025-09-24 17:00:55.123 [main] DEBUG com.generate3d.Generate3DApplication - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-09-24 17:00:55.124 [main] INFO  com.generate3d.Generate3DApplication - The following 1 profile is active: "test"
+2025-09-24 17:00:57.428 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-09-24 17:00:57.437 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-09-24 17:00:57.519 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 0 Redis repository interfaces.
+2025-09-24 17:00:58.158 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ExportTaskMapper.class]
+2025-09-24 17:00:58.159 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\GenerationTaskMapper.class]
+2025-09-24 17:00:58.166 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\ModelMapper.class]
+2025-09-24 17:00:58.167 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Identified candidate component class: file [D:\Generate-3D-models\backend-simple\target\classes\com\generate3d\mapper\SystemConfigMapper.class]
+2025-09-24 17:00:58.192 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'exportTaskMapper' and 'com.generate3d.mapper.ExportTaskMapper' mapperInterface
+2025-09-24 17:00:58.231 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'generationTaskMapper' and 'com.generate3d.mapper.GenerationTaskMapper' mapperInterface
+2025-09-24 17:00:58.239 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'modelMapper' and 'com.generate3d.mapper.ModelMapper' mapperInterface
+2025-09-24 17:00:58.257 [main] DEBUG org.mybatis.spring.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'systemConfigMapper' and 'com.generate3d.mapper.SystemConfigMapper' mapperInterface
+2025-09-24 17:00:58.271 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+2025-09-24 17:00:58.440 [main] INFO  o.s.b.a.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-24 17:00:58.502 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalArgumentException: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getTypeForFactoryBeanFromAttributes(FactoryBeanRegistrySupport.java:86)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:838)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isTypeMatch(AbstractBeanFactory.java:620)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:532)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:138)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:775)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:597)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331)
+	at com.generate3d.Generate3DApplication.main(Generate3DApplication.java:20)
