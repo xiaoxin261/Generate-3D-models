@@ -5,6 +5,8 @@ import lombok.Data;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.DecimalMax;
 
 /**
  * 3D模型生成请求DTO
@@ -18,18 +20,22 @@ public class GenerateModelRequest {
     @Schema(description = "输入文本描述", example = "一只可爱的小猫咪，坐在草地上")
     private String text;
     
-    @Schema(description = "材质类型", example = "plastic", allowableValues = {"plastic", "metal", "wood", "ceramic", "glass"})
-    private String material = "plastic";
+    @DecimalMin(value = "0.1", message = "长度必须大于0.1米")
+    @DecimalMax(value = "50.0", message = "长度不能超过50米")
+    @Schema(description = "长度(m)", example = "6.0", minimum = "0.1", maximum = "50.0")
+    private Double length = 6.0;
     
-    @Schema(description = "主要颜色", example = "#ff0000")
-    private String color = "#ff0000";
+    @DecimalMin(value = "0.1", message = "宽度必须大于0.1米")
+    @DecimalMax(value = "50.0", message = "宽度不能超过50米")
+    @Schema(description = "宽度(m)", example = "4.0", minimum = "0.1", maximum = "50.0")
+    private Double width = 4.0;
     
-    @Schema(description = "模型尺寸", example = "medium", allowableValues = {"small", "medium", "large"})
-    private String size = "medium";
+    @DecimalMin(value = "0.1", message = "高度必须大于0.1米")
+    @DecimalMax(value = "50.0", message = "高度不能超过50米")
+    @Schema(description = "高度(m)", example = "3.0", minimum = "0.1", maximum = "50.0")
+    private Double height = 3.0;
     
-    @Schema(description = "生成风格", example = "realistic", allowableValues = {"realistic", "cartoon", "abstract", "minimalist"})
-    private String style = "realistic";
-    
-    @Schema(description = "细节级别", example = "medium", allowableValues = {"low", "medium", "high"})
-    private String detailLevel = "medium";
+    @Schema(description = "风格类型", example = "现代", 
+            allowableValues = {"现代", "古典", "简约", "复古", "工业", "自然"})
+    private String style = "现代";
 }
