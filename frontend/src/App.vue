@@ -27,10 +27,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import ModelGenerator from './components/ModelGenerator.vue';
-import ThreeScene from './components/ThreeScene.vue';
-import RoomGenerator from './components/RoomGenerator.vue';
-import Header from './components/Header.vue';
+// import ModelGenerator from './components/ModelGenerator.vue';
+// import ThreeScene from './components/ThreeScene.vue';
+// import RoomGenerator from './components/RoomGenerator.vue';
+// import Header from './components/Header.vue';
 
 // 生成状态
 const isGenerating = ref(false);

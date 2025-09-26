@@ -1,0 +1,112 @@
+<template>
+    <div class="login-container">
+        <div class="title">七牛AI</div>
+        <div class="subTilte">七牛AI，您的装修选择必需品！</div>
+        <div class="tabs-container">
+            <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+                <el-tab-pane label="账号密码登录" name="first">
+                    <el-form :model="form" label-width="auto" style="max-width: 600px">
+                        <el-form-item label="" prop="username">
+                            <el-input v-model="form.username" placeholder="请输入账号/邮箱/手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="" prop="password">
+                            <el-input v-model="form.password" placeholder="请输入密码" type="password"></el-input>
+                        </el-form-item>
+                    </el-form>
+                    <div class="remember-login">
+                        <el-checkbox v-model="form.rememberLogin" style="margin-right: 8px;">自动登录</el-checkbox>
+                        <el-link type="primary" style="margin-right: 8px;" @click="handleClick('password')">忘记密码</el-link>
+                    </div>
+                    <div class="login-btn">
+                        <el-button type="primary" style="margin-top: 10px; width: 100%;" @click="handleClick('login')">登录</el-button>
+                    </div>
+                    <div class="register-btn">
+                        <el-link type="primary" style="margin-right: 8px;" @click="handleClick('register')">注册账号</el-link>
+                    </div>
+                </el-tab-pane>
+                <el-tab-pane label="手机号登录" name="second">
+                    <el-form :model="form" label-width="auto" style="max-width: 600px">
+                        <el-form-item label="" prop="mobile">
+                            <el-input v-model="form.mobile" placeholder="请输入手机号"></el-input>
+                        </el-form-item>
+                        <el-form-item label="" prop="code">
+                            <el-input v-model="form.code" placeholder="请输入验证码"></el-input>
+                        </el-form-item>
+                        <el-button type="primary" style="margin-top: 10px; width: 100%;" @click="handleClick('login')">登录</el-button>
+                    </el-form>
+                </el-tab-pane>
+            </el-tabs>
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const form = ref({
+    username: '',
+    password: '',
+    mobile: '',
+    rememberLogin: false
+})
+
+const activeName = ref('first')
+
+const handleClick = (tab) => {
+    activeName.value = tab.name
+}
+</script>
+
+<style scoped lang="less">
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    background-color: #f5f5f5;
+    .title{
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 33px;
+        font-weight: 500;
+        color: #000000;
+    }
+    .subTilte{
+        position: absolute;
+        top: 27%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 14px;
+        font-weight: 400;
+        opacity: 0.45;
+        color: #000000;
+    }
+    .tabs-container{
+        position: absolute;
+        top: 33%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 368px;
+        height: 348px;
+    }
+    .remember-login{
+        display: flex;
+        justify-content: space-between;
+    }
+    .register-btn{
+        display: flex;
+        justify-content: right;
+        margin-top: 10px;
+    }
+}
+.demo-tabs > .el-tabs__content {
+  padding: 32px;
+  color: #6b778c;
+  font-size: 32px;
+  font-weight: 600;
+}
+</style>

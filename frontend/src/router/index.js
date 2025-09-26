@@ -10,19 +10,27 @@ const HomeView = () => import('../views/HomeView/index.vue');
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'homeView',
     component: HomeView,
+    redirect: '/home',
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        component: () => import('../views/HomeView/Home.vue'),
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('../views/HomeView/Login.vue'),
+      },
+    ],
   },
   {
     path: '/help',
     name: 'help',
     component: () => import('../views/HelpView/index.vue'),
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('../views/LoginView/index.vue'),
-  },
+  }
 ];
 
 // 4. 创建路由实例

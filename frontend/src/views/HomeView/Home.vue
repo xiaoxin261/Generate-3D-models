@@ -1,22 +1,20 @@
 <template>
-  <div class="bg">
-    <Header />
-    <router-view />
+  <div class="home">
+    <div class="content">
+      <h2 class="title">心中所想，我来实现</h2>
+      <div class="sub-title">无论您想要什么样的装修效果，</div>
+      <div class="sub-title">都可以来这里尝试一下。</div>
+      <div class="sub-title">只需简单几步，让所思所想轻松实现。</div>
+    </div>
+    <router-link to="/design" class="design">开始设计</router-link>
   </div>
 </template>
 
 <script setup>
-import Header from './Header.vue';
 
 </script>
-<style scoped lang="less">
-.bg {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  background: url('/images/bg.png') center/cover no-repeat;
-}
 
+<style scoped lang="less">
 .content {
   position: absolute;
   top: 22%;
