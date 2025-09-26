@@ -1,29 +1,26 @@
 <template>
   <div class="app">
-    <div class="header">
+    <!-- <div class="header">
       <Header />
     </div>
     <div class="app-container">
-
-      <!-- 中央3D场景区域 -->
       <div class="scene-container">
         <ThreeScene ref="threeSceneRef" :room-params="roomParams" :current-drag-model="currentDragModel"
           :room-model-url="roomModelUrl" @export-models="showExportDialog = true" />
       </div>
-      <!-- 左侧模型生成区域 -->
       <div class="model-generate-section">
         <ModelGenerator :is-generating="isGenerating" :progress="progress" @generate="handleGenerateModel" />
       </div>
-      <!-- 右侧房间参数设置区域 -->
       <div class="room-generate-section">
         <RoomGenerator />
-        <el-button v-loading.fullscreen.lock="fullscreenLoading" type="primary" @click="generateModel(1)">生成模型</el-button>
+        <button v-loading.fullscreen.lock="fullscreenLoading" type="primary" @click="generateModel(1)">生成模型</button>
       </div>
       <div class="loading-container">
         <div class="loading-spinner"></div>
         <div class="loading-text">生成中...</div>
       </div>
-    </div>
+    </div> -->
+    <router-view></router-view>
   </div>
 
 </template>
@@ -245,6 +242,10 @@ const closeExportDialog = () => {
 </script>
 
 <style scoped>
+.app {
+  width: 100vw;
+  height: 100vh;
+}
 .header {
   height: 96px;
 }

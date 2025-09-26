@@ -11,9 +11,11 @@
   "dependencies": {
     "@tweenjs/tween.js": "^20.0.3",
     "axios": "^1.12.2",
-    "element-plus": "^2.11.3",
+    "element-plus": "^2.11.4",
+    "less": "^4.4.1",
     "three": "^0.160.0",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.4.0",
