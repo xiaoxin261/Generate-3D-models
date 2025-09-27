@@ -2,51 +2,137 @@
     <div class="room-generator">
         <div class="imgGenerator">
             <div class="imgContainer">
-                <div class="imgUpdateBox">
-                    图生
-                </div>
-                <div class="imgUpdateBox">
-                    图生
-                </div>
+                <ImageUpload @change="handleFile" placeholder="上传户型图" />
             </div>
-            
+            <el-select v-model="value" placeholder="选择户型风格" style="width: 100%; margin-top: 10px;">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+            </el-select>
+            <el-button type="info" style="width: 100%; height: 30px; margin-top: 15px; border-radius: 4px;">
+                生成房间
+            </el-button>
         </div>
         <div class="textGenerator">
-            <h2>房间参数</h2>
+            <div class="title">
+                自定义房间参数
+            </div>
+            <el-form :model="textForm" label-width="auto" style="max-width: 600px">
+                <el-form-item label="描述" prop="text">
+                    <el-input v-model="textForm.text" style="width: 100%;" :rows="2" type="textarea"
+                        placeholder="请输入想要的房间描述" />
+                </el-form-item>
+                <el-form-item label="长(米)">
+                    <el-input v-model="textForm.long" type="number" />
+                </el-form-item>
+                <el-form-item label="宽(米)">
+                    <el-input v-model="textForm.width" type="number" />
+                </el-form-item>
+                <el-form-item label="高(米)">
+                    <el-input v-model="textForm.height" type="number" />
+                </el-form-item>
+                <el-form-item label="风格">
+                    <el-select v-model="textForm.style" placeholder="选择风格" style="width: 100%;">
+                        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+                    </el-select>
+                </el-form-item>
+            </el-form>
+            <el-button type="info" style="margin-top: -15px; width: 100%; height: 30px; border-radius: 4px;">
+                生成房间
+            </el-button>
+            <div class="recommened">
+                <el-link type="primary">获取推荐尺寸</el-link>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
 import instance from '../../utils/request';
+import ImageUpload from '../../component/ImageUpload.vue';
+import { onMounted, reactive, ref } from 'vue';
+
+const value = ref('');
+const options = ref([
+    {
+        value: 'option1',
+        label: 'Option 1'
+    },
+    {
+        value: 'option2',
+        label: 'Option 2'
+    },
+    {
+        value: 'option3',
+        label: 'Option 3'
+    }
+]);
+
+const textForm = reactive({
+    text: '',
+    long: 0,
+    width: 0,
+    height: 0,
+    style: ''
+});
+
+function handleFile (file) {
+  const fd = new FormData()
+  fd.append('file', file)
+  // axios.post('/api/upload', fd)
+}
+
+onMounted(() => {
+    instance.get('/api/room/getRoomType').then(res => {
+        if (res.data.code === 200) {
+            options.value = res.data.data.map(item => ({
+                value: item,
+                label: item
+            }));
+        }
+    });
+});
 
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .room-generator {
     border-radius: 8px;
+
     .imgGenerator {
         width: 100%;
-        height: 300px;
+        height: 240px;
         border-radius: 8px;
-        border-bottom: 1px solid #e5e5e5;
-        .imgContainer{
+        border-bottom: 3px solid #e5e5e5;
+
+        .imgContainer {
             width: 100%;
-            height: 35%;
+            height: 120px;
+            background-color: #e5e5e5;
+            text-align: center;
+            line-height: 120px;
+            border-radius: 8px;
+        }
+    }
+
+    .textGenerator {
+        width: 100%;
+        height: 160px;
+        border-radius: 8px;
+        padding-top: 15px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+        .recommened {
+            margin-top: -10px;
+            width: 100%;
+            height: 30px;
+            border-radius: 4px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            .imgUpdateBox{
-                width: 45%;
-                height: 100%;
-                border-radius: 8px;
-                background-color: #e5e5e5;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+            justify-content: right;
         }
     }
 }
+
 </style>

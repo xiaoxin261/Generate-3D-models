@@ -15,10 +15,10 @@
       <RoomGenerator v-show="currentIndex === 0"/>
       <ModelGenerator v-show="currentIndex === 1" :is-generating="isGenerating" :progress="progress" @generate="handleGenerateModel" />
     </div>
-    <div class="room-generate-section">
+    <!-- <div class="room-generate-section">
       <RoomGenerator />
       <button v-loading.fullscreen.lock="fullscreenLoading" type="primary" @click="generateModel(1)">生成模型</button>
-    </div>
+    </div> -->
   </div>
 
 </template>
