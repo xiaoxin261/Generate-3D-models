@@ -28,6 +28,7 @@
 
 <script setup>
 import { reactive } from 'vue';
+import instance from '../../utils/request';
 
 // 房间参数
 const roomParams = reactive({
@@ -39,8 +40,12 @@ const roomParams = reactive({
 
 // 生成房间
 const generateRoom = () => {
-    console.log('生成房间参数:', roomParams);
-    // 这里可以添加实际的房间生成逻辑
+    console.log(1111);
+    instance.get('/api/v1/models/form-config').then(response => {
+        console.log(response.data);
+    }).catch(error => {
+        console.error(error);
+    });
     
 };
 </script>

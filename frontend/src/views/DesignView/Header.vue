@@ -66,7 +66,7 @@ const navRightList = ref([
     },
     {
         id: 'user',
-        name: '用户',
+        name: '个人中心',
         img: '/images/icon_user.png'
     }
 ])
