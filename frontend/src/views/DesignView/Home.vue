@@ -1,20 +1,24 @@
 <template>
-    <div class="app-container">
-      <div class="scene-container">
-        <ThreeScene ref="threeSceneRef" :room-params="roomParams" :current-drag-model="currentDragModel"
-          :room-model-url="roomModelUrl" @export-models="showExportDialog = true" />
+  <div class="app-container">
+    <div class="scene-container">
+      <ThreeScene ref="threeSceneRef" :room-params="roomParams" :current-drag-model="currentDragModel"
+        :room-model-url="roomModelUrl" @export-models="showExportDialog = true" />
+    </div>
+    <div class="tab">
+      <div class="item" v-for="item in tabList" :key="item.id" @click="currentIndex = item.id">
+        <img :class="{ 'active': item.id === currentIndex }"
+          :src="item.id === currentIndex ? item.selectedSrc : item.src" alt="">
+        <div>{{ item.name }}</div>
       </div>
-      <div class="model-generate-section">
-        <ModelGenerator :is-generating="isGenerating" :progress="progress" @generate="handleGenerateModel" />
-      </div>
-      <div class="room-generate-section">
-        <RoomGenerator />
-        <button v-loading.fullscreen.lock="fullscreenLoading" type="primary" @click="generateModel(1)">生成模型</button>
-      </div>
-      <div class="loading-container">
-        <div class="loading-spinner"></div>
-        <div class="loading-text">生成中...</div>
-      </div>
+    </div>
+    <div class="model-generate-section">
+      <RoomGenerator v-show="currentIndex === 0"/>
+      <ModelGenerator v-show="currentIndex === 1" :is-generating="isGenerating" :progress="progress" @generate="handleGenerateModel" />
+    </div>
+    <div class="room-generate-section">
+      <RoomGenerator />
+      <button v-loading.fullscreen.lock="fullscreenLoading" type="primary" @click="generateModel(1)">生成模型</button>
+    </div>
   </div>
 
 </template>
@@ -25,10 +29,17 @@ import ModelGenerator from './ModelGenerator.vue';
 import ThreeScene from './ThreeScene.vue';
 import RoomGenerator from './RoomGenerator.vue';
 
+const currentIndex = ref(0);
+const tabList = ref([
+  { id: 0, name: '房间', src: '/images/icon_room.png', selectedSrc: '/images/icon_room_selected.png' },
+  { id: 1, name: '装修', src: '/images/icon_design.png', selectedSrc: '/images/icon_design_selected.png' },
+  { id: 2, name: '灵感库', src: '/images/icon_source.png', selectedSrc: '/images/icon_source_selected.png' },
+  { id: 3, name: '我的', src: '/images/icon_mine.png', selectedSrc: '/images/icon_mine_selected.png' },
+]);
+
 // 生成状态
 const isGenerating = ref(false);
 const progress = ref(0);
-
 // 模型列表
 const models = ref([]);
 const currentDragModel = ref(null);
@@ -234,49 +245,81 @@ const closeExportDialog = () => {
 };
 </script>
 
-<style scoped>
-.app {
-  width: 100vw;
-  height: 100vh;
-}
-.header {
-  height: 96px;
-}
-
+<style scoped lang="less">
 .app-container {
   position: relative;
-  height: 100vh;
+  height: 100%;
   box-sizing: border-box;
   background-color: #f5f5f5;
+
+  .tab {
+    position: absolute;
+    width: 70px;
+    height: 100%;
+    top: 0;
+    padding-top: 20px;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 40px;
+
+    .item {
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      cursor: pointer;
+
+      img {
+        width: 40px;
+        height: 40px;
+        padding: 7px;
+      }
+
+      .active {
+        background-color: #000;
+        border-radius: 50%;
+      }
+
+      div {
+        font-size: 18px;
+        line-height: 15px;
+      }
+    }
+
+  }
+
+  .model-generate-section {
+    position: absolute;
+    top: 0;
+    left: 70px;
+    padding: 20px;
+    background-color: white;
+    width: 15%;
+    height: 100%;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .scene-container {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 }
 
-.model-generate-section {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  padding: 20px;
-  background-color: white;
-  width: 15%;
-  height: 95vh;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+
 
 .room-generate-section {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 0;
+  right: 10px;
   padding: 20px;
   background-color: white;
   width: 15%;
-  height: 95vh;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.scene-container {
-  background-color: white;
-  border-radius: 8px;
+  height: 100%;
+  border-radius: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 </style>

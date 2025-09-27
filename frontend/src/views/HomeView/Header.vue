@@ -1,15 +1,15 @@
 <template>
     <div class="header">
-        <div class="left">
+        <router-link to="/" class="left">
             <span class="title">七牛AI</span>
             <span class="littleTitle">您的专业装修平台</span>
-        </div>
+        </router-link>
         <div class="right">
             <router-link to="/help" class="problem">
                 <img src="/images/icon_problem.png" alt="">
                 <span>帮助中心</span>
             </router-link>
-            <router-link to="/login" class="login" @click="handleLoginClick">登录/注册</router-link>
+            <router-link to="/login" class="login">登录/注册</router-link>
         </div>
     </div>
 </template>

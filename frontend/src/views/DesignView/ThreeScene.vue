@@ -121,14 +121,15 @@ watch(() => props.roomParams, generateRoom, { deep: true });
 watch(() => props.currentDragModel, handleDragModelChange);
 </script>
 
-<style scoped>
+<style scoped lang="less">
+@headerHeight: 60px;
 .three-scene {
   width: 100%;
   height: 100%;
 }
 
 .scene-container {
-  height: 100vh;
+  height: calc(100vh - @headerHeight);
   width: 100%;
   background-color: #f5f5f5;
 }
