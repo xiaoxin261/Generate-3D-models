@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { apiAuth } from '../api'
+import { login, register, refreshTokenApi, logout } from '@/api/auth'
 
 const useAuthStore = defineStore('auth', {
   state: () => ({
@@ -19,7 +19,7 @@ const useAuthStore = defineStore('auth', {
     },
 
     async login(loginForm) {
-      const response = await apiAuth.login(loginForm);
+      const response = await login(loginForm);
       if (response.code === 0) {
         this.setTokens(response.data);
         // 登录成功后可以顺便获取用户信息
@@ -30,7 +30,7 @@ const useAuthStore = defineStore('auth', {
     },
 
     async register(registerForm) {
-      const response = await apiAuth.register(registerForm);
+      const response = await register(registerForm);
       return response.code === 0;
     },
 
@@ -39,7 +39,7 @@ const useAuthStore = defineStore('auth', {
         throw new Error('No refresh token available');
       }
       try {
-        const response = await apiAuth.refreshToken({ refreshToken: this.refreshToken });
+        const response = await refreshTokenApi({ refreshToken: this.refreshToken });
         if (response.code === 0) {
           this.setTokens(response.data);
           return response.data.accessToken;
@@ -55,7 +55,7 @@ const useAuthStore = defineStore('auth', {
 
     logout() {
       // 调用后端登出接口（可选，但推荐）
-      apiAuth.logout().catch(() => {}); 
+      logout().catch(() => {}); 
       
       // 清除 state 和 localStorage
       this.accessToken = null;

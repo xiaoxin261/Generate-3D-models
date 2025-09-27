@@ -28,7 +28,7 @@ export function register(data) {
  * 刷新令牌
  * @param {object} data - { refreshToken }
  */
-export function refreshToken(data) {
+export function refreshTokenApi(data) {
   return request({
     url: '/auth/refresh',
     method: 'post',
