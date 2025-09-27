@@ -8,14 +8,14 @@ const instance = axios.create({
   },
 });
 instance.interceptors.request.use(function (config) {
-  const authStore = useAuthStore();
-  // 如果用户已登录，且请求不是去刷新Token的，就为请求添加 Authorization 头
-  if (authStore.isLoggedIn && config.url !== '/auth/refresh') {
-    config.headers['Authorization'] = `Bearer ${authStore.accessToken}`;
-  }
+  // const authStore = useAuthStore();
+  // // 如果用户已登录，且请求不是去刷新Token的，就为请求添加 Authorization 头
+  // if (authStore.isLoggedIn && config.url !== '/auth/refresh') {
+  //   config.headers['Authorization'] = `Bearer ${authStore.accessToken}`;
+  // }
   return config;
 }, function (error) {
-  return Promise.reject(error);
+  return ElMessage.error('发送失败');
 });
 
 // 添加响应拦截器

@@ -27,6 +27,8 @@ const MAX_SIZE = 2 * 1024 * 1024
 // 格式白名单
 const WHITE_LIST = ['image/jpeg', 'image/jpg', 'image/png']
 
+const emit = defineEmits(['update:modelValue'])
+
 // 校验
 function beforeUpload(rawFile) {
     if (!WHITE_LIST.includes(rawFile.type)) {
