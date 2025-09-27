@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
-import ThreeJSManager from '../utils/ThreeJSManager.js';
+import ThreeJSManager from '../../utils/ThreeJSManager.js';
 
 // 定义props
 const props = defineProps({
@@ -135,10 +135,7 @@ watch(() => props.currentDragModel, handleDragModelChange);
 
 .scene-controls {
   position: fixed;
-  /* 固定定位 */
-  top: 100px;
   left: 50%;
-  /* 先移到中间 */
   transform: translateX(-50%);
   z-index: 100;
   padding: 10px 10px;

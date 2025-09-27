@@ -7,30 +7,30 @@
                 <el-tab-pane label="账号密码登录" name="first">
                     <el-form :model="form" label-width="auto" style="max-width: 600px">
                         <el-form-item label="" prop="username">
-                            <el-input v-model="form.username" placeholder="请输入账号/邮箱/手机号"></el-input>
+                            <el-input class="mobile-input" v-model="form.username" placeholder="请输入账号/邮箱/手机号" prefix-icon="User"></el-input>
                         </el-form-item>
                         <el-form-item label="" prop="password">
-                            <el-input v-model="form.password" placeholder="请输入密码" type="password"></el-input>
+                            <el-input class="mobile-input" v-model="form.password" placeholder="请输入密码" type="password" prefix-icon="Lock"></el-input>
                         </el-form-item>
                     </el-form>
                     <div class="remember-login">
                         <el-checkbox v-model="form.rememberLogin" style="margin-right: 8px;">自动登录</el-checkbox>
-                        <el-link type="primary" style="margin-right: 8px;" @click="handleClick('password')">忘记密码</el-link>
+                        <el-link type="primary" style="margin-right: 8px; font-weight: 400;" @click="handleClick('password')">忘记密码</el-link>
                     </div>
                     <div class="login-btn">
                         <el-button type="primary" style="margin-top: 10px; width: 100%;" @click="handleClick('login')">登录</el-button>
                     </div>
                     <div class="register-btn">
-                        <el-link type="primary" style="margin-right: 8px;" @click="handleClick('register')">注册账号</el-link>
+                        <el-link type="primary" style="margin-right: 8px; font-weight: 400;" @click="handleClick('register')">注册账号</el-link>
                     </div>
                 </el-tab-pane>
                 <el-tab-pane label="手机号登录" name="second">
                     <el-form :model="form" label-width="auto" style="max-width: 600px">
                         <el-form-item label="" prop="mobile">
-                            <el-input v-model="form.mobile" placeholder="请输入手机号"></el-input>
+                            <el-input class="mobile-input" v-model="form.mobile" placeholder="请输入手机号" prefix-icon="Phone"></el-input>
                         </el-form-item>
                         <el-form-item label="" prop="code">
-                            <el-input v-model="form.code" placeholder="请输入验证码"></el-input>
+                            <el-input class="mobile-input" v-model="form.code" placeholder="请输入验证码" prefix-icon="ChatDotSquare"></el-input>
                         </el-form-item>
                         <el-button type="primary" style="margin-top: 10px; width: 100%;" @click="handleClick('login')">登录</el-button>
                     </el-form>
@@ -52,8 +52,15 @@ const form = ref({
 
 const activeName = ref('first')
 
-const handleClick = (tab) => {
-    activeName.value = tab.name
+const handleClick = (to) => {
+    switch (to) {
+        case 'login':
+            break
+        case 'register':
+            break
+        case 'password':
+            break
+    }
 }
 </script>
 
@@ -108,5 +115,8 @@ const handleClick = (tab) => {
   color: #6b778c;
   font-size: 32px;
   font-weight: 600;
+}
+.mobile-input :deep(.el-input__prefix svg) {
+  color: #409EFF; /* Element Plus 的 primary 蓝色 */
 }
 </style>
