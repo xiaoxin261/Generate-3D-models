@@ -45,3 +45,39 @@ export function logout() {
     method: 'post',
   });
 }
+
+/**
+ * 检查用户名是否存在
+ * @param {object} data - { username }
+ */
+export function checkUsername(data) {
+  return request({
+    url: '/auth/check-username',
+    method: 'get',
+    data,
+  });
+}
+
+/**
+ * 检查邮箱是否存在
+ * @param {object} data - { email }
+ */
+export function checkEmail(data) {
+  return request({
+    url: '/auth/check-email',
+    method: 'get',
+    data,
+  });
+}
+
+/**
+ * 检查手机号是否存在
+ * @param {object} data - { phone }
+ */
+export function checkPhone(data) {
+  return request({
+    url: '/auth/check-phone',
+    method: 'get',
+    data,
+  });
+}

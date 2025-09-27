@@ -37,3 +37,33 @@ export function generateModelFromImage(formData) {
     },
   });
 }
+
+/**
+ * 获取3D模型风格选项
+ */
+export function getModelStyles() {
+  return request({
+    url: '/api/v1/models/styles',
+    method: 'get',
+  });
+}
+
+/**
+ * 获取3D模型表单配置
+ */
+export function getModelFormConfig() {
+  return request({
+    url: '/api/v1/models/form-config',
+    method: 'get',
+  });
+}
+
+/**
+ * 获取3D模型尺寸推荐
+ */
+export function getModelDimensionRecommendation() {
+  return request({
+    url: '/api/v1/models/dimension-recommendation',
+    method: 'get',
+  });
+}
