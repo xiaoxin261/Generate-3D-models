@@ -1,59 +1,52 @@
 <template>
     <div class="room-generator">
-        <h2>房间参数设置</h2>
-        <div class="form-group">
-            <label>长度 (m)</label>
-            <input v-model.number="roomParams.length" type="number" min="1" max="20" step="0.5">
+        <div class="imgGenerator">
+            <div class="imgContainer">
+                <div class="imgUpdateBox">
+                    图生
+                </div>
+                <div class="imgUpdateBox">
+                    图生
+                </div>
+            </div>
+            
         </div>
-        <div class="form-group">
-            <label>宽度 (m)</label>
-            <input v-model.number="roomParams.width" type="number" min="1" max="20" step="0.5">
+        <div class="textGenerator">
+            <h2>房间参数</h2>
         </div>
-        <div class="form-group">
-            <label>高度 (m)</label>
-            <input v-model.number="roomParams.height" type="number" min="1" max="10" step="0.5">
-        </div>
-        <div class="form-group">
-            <label>风格</label>
-            <select v-model="roomParams.style">
-                <option value="modern">现代简约</option>
-                <option value="classic">经典欧式</option>
-                <option value="industrial">工业风</option>
-                <option value="japanese">日式</option>
-            </select>
-        </div>
-        <button @click="generateRoom" class="generate-btn">生成房间</button>
     </div>
 </template>
 
 <script setup>
-import { reactive } from 'vue';
 import instance from '../../utils/request';
 
-// 房间参数
-const roomParams = reactive({
-    length: 5,
-    width: 4,
-    height: 3,
-    style: 'modern'
-});
-
-// 生成房间
-const generateRoom = () => {
-    console.log(1111);
-    instance.get('/api/v1/models/form-config').then(response => {
-        console.log(response.data);
-    }).catch(error => {
-        console.error(error);
-    });
-    
-};
 </script>
 
 <style scoped>
 .room-generator {
-    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .imgGenerator {
+        width: 100%;
+        height: 300px;
+        border-radius: 8px;
+        border-bottom: 1px solid #e5e5e5;
+        .imgContainer{
+            width: 100%;
+            height: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            .imgUpdateBox{
+                width: 45%;
+                height: 100%;
+                border-radius: 8px;
+                background-color: #e5e5e5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
 }
 </style>
