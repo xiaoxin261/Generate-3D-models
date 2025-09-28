@@ -7,16 +7,20 @@
                 <el-tab-pane label="账号密码登录" name="first">
                     <el-form :model="form" label-width="auto" style="max-width: 600px">
                         <el-form-item label="" prop="username">
-                            <el-input class="mobile-input" v-model="form.username" placeholder="请输入账号/邮箱/手机号"
+                            <el-input class="mobile-input" v-model="form.loginName" placeholder="请输入用户名"
                                 prefix-icon="User"></el-input>
                         </el-form-item>
                         <el-form-item label="" prop="password">
                             <el-input class="mobile-input" v-model="form.password" placeholder="请输入密码" type="password"
                                 prefix-icon="Lock"></el-input>
                         </el-form-item>
+                        <el-form-item label="" prop="captcha">
+                            <el-input class="mobile-input" v-model="form.captcha" placeholder="请输入验证码"
+                                prefix-icon="Lock"></el-input>
+                        </el-form-item>
                     </el-form>
                     <div class="remember-login">
-                        <el-checkbox v-model="form.rememberLogin" style="margin-right: 8px;">自动登录</el-checkbox>
+                        <el-checkbox v-model="form.rememberMe" style="margin-right: 8px;">自动登录</el-checkbox>
                         <el-link type="primary" style="margin-right: 8px; font-weight: 400;"
                             @click="currentPage = 'forgot'">忘记密码</el-link>
                     </div>
@@ -67,6 +71,10 @@
                             <el-input class="mobile-input" v-model="formRegister.confirmPassword" placeholder="请确认密码" type="password"
                                 prefix-icon="Lock"></el-input>
                         </el-form-item>
+                        <el-form-item label="" prop="verificationCode">
+                            <el-input class="mobile-input" v-model="formRegister.verificationCode" placeholder="请输入验证码"
+                                prefix-icon="Lock"></el-input>
+                        </el-form-item>
                     </el-form>
                     <div class="login-btn">
                         <el-button type="primary" style="margin-top: 10px; width: 100%;"
@@ -81,12 +89,16 @@
             <el-tabs v-show="currentPage === 'forgot'" v-model="activeName" class="demo-tabs" @tab-click="handleClick">
                 <el-tab-pane label="账号密码登录" name="first">
                     <el-form :model="form" label-width="auto" style="max-width: 600px">
-                        <el-form-item label="" prop="username">
-                            <el-input class="mobile-input" v-model="form.username" placeholder="请输入账号/邮箱/手机号"
+                        <el-form-item label="" prop="loginName">
+                            <el-input class="mobile-input" v-model="form.loginName" placeholder="请输入用户名"
                                 prefix-icon="User"></el-input>
                         </el-form-item>
                         <el-form-item label="" prop="password">
                             <el-input class="mobile-input" v-model="form.password" placeholder="请输入密码" type="password"
+                                prefix-icon="Lock"></el-input>
+                        </el-form-item>
+                        <el-form-item label="" prop="captcha">
+                            <el-input class="mobile-input" v-model="form.captcha" placeholder="请输入验证码"
                                 prefix-icon="Lock"></el-input>
                         </el-form-item>
                     </el-form>
@@ -114,10 +126,10 @@ import { ref } from 'vue'
 import { login, register } from '@/api/auth'
 
 const form = ref({
-    username: '',
+    loginName: '',
     password: '',
-    mobile: '',
-    rememberLogin: false
+    captcha: '',
+    rememberMe: false
 })
 
 const formRegister = ref({
@@ -135,7 +147,20 @@ const currentPage = ref('login')
 const handleClick = (to) => {
     switch (to) {
         case 'login':
+            if (!form.value.loginName) {
+                ElMessage.error('请输入用户名');
+                return;
+            }
+            if (!form.value.password) {
+                ElMessage.error('请输入密码');
+                return;
+            }
+            if (!form.value.captcha) {
+                ElMessage.error('请输入验证码');
+                return;
+            }
             login(form.value).then(res => {
+                console.log(res)
                 if (res.code === 200) {
                     ElMessage.success('登录成功');
                     router.push({ name: 'home' });
@@ -147,12 +172,14 @@ const handleClick = (to) => {
             });
             break
         case 'register':
+            console.log(formRegister.value)
             register(formRegister.value).then(res => {
-                if (res.code === 200) {
+                console.log(res)
+                if (res.success === true) {
                     ElMessage.success('注册成功');
                     router.push({ name: 'login' });
                 } else {
-                    ElMessage.error(res.msg || '注册失败');
+                    ElMessage.error(res.message || '注册失败');
                 }
             }).catch(() => {
                 ElMessage.error('注册失败');

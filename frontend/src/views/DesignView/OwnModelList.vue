@@ -34,8 +34,8 @@ const ownModelList = ref([
         align-items: center;
         gap: 15px;
         img {
-            width: 115px;
-            height: 100px;
+            width: 45%;
+            height: 50%;
         }
     }
 }

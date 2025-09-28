@@ -2,7 +2,7 @@
     <!-- 单图上传 -->
     <el-upload class="avatar-uploader" action="#" :show-file-list="false" :before-upload="beforeUpload"
         :http-request="dummyRequest">
-        <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+        <img v-if="innerUrl" :src="innerUrl" class="avatar" />
         <span v-else>
             {{ props.placeholder }}
         </span>

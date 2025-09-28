@@ -1,8 +1,8 @@
 import axios from 'axios';
 import useAuthStore from '../stores/auth';
 const instance = axios.create({
-  baseURL: 'http://localhost:8090/api',
-  // baseURL: 'http://106.53.206.242:8090/api',
+  // baseURL: 'http://localhost:8090/api',
+  baseURL: 'http://106.53.206.242:8090/api',
   timeout: 100000,
   headers: {
     'Content-Type': 'application/json',

@@ -93,8 +93,8 @@ const recommendList = ref([
             gap: 15px;
 
             img {
-                width: 115px;
-                height: 100px;
+                width: 45%;
+                height: 50%;
             }
         }
     }
