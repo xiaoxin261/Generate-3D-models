@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D模型评估系统 - 数据看板</title>
+    <link rel="stylesheet" href="css/evaluation-dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <h1>3D模型评估系统</h1>
+            <div class="header-actions">
+                <button id="refreshBtn" class="btn btn-primary">刷新数据</button>
+                <div class="last-update">
+                    最后更新: <span id="lastUpdateTime">--</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 概览卡片 -->
+        <section class="overview-cards">
+            <div class="card">
+                <div class="card-icon task-icon">📋</div>
+                <div class="card-content">
+                    <h3>评估任务</h3>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="totalTasks">--</span>
+                            <span class="stat-label">总任务</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="completedTasks">--</span>
+                            <span class="stat-label">已完成</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="runningTasks">--</span>
+                            <span class="stat-label">运行中</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon evaluation-icon">⚡</div>
+                <div class="card-content">
+                    <h3>评估结果</h3>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="totalEvaluations">--</span>
+                            <span class="stat-label">总评估</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="avgScore">--</span>
+                            <span class="stat-label">平均分</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="successRate">--</span>
+                            <span class="stat-label">成功率</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon rating-icon">⭐</div>
+                <div class="card-content">
+                    <h3>用户评分</h3>
+                    <div class="card-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="totalRatings">--</span>
+                            <span class="stat-label">总评分</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="avgUserRating">--</span>
+                            <span class="stat-label">平均评分</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="feedbackCount">--</span>
+                            <span class="stat-label">有反馈</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 图表区域 -->
+        <section class="charts-section">
+            <div class="chart-row">
+                <!-- 等级分布饼图 -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>模型质量等级分布</h3>
+                    </div>
+                    <div class="chart-content">
+                        <canvas id="gradeDistributionChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 任务状态分布 -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>任务状态分布</h3>
+                    </div>
+                    <div class="chart-content">
+                        <canvas id="taskStatusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-row">
+                <!-- 评分趋势图 -->
+                <div class="chart-container full-width">
+                    <div class="chart-header">
+                        <h3>评估趋势 (最近30天)</h3>
+                        <div class="chart-controls">
+                            <select id="trendPeriod">
+                                <option value="7">最近7天</option>
+                                <option value="30" selected>最近30天</option>
+                                <option value="90">最近90天</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-content">
+                        <canvas id="evaluationTrendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 详细数据表格 -->
+        <section class="data-tables">
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>最近评估任务</h3>
+                    <button id="viewAllTasksBtn" class="btn btn-secondary">查看全部</button>
+                </div>
+                <div class="table-content">
+                    <table id="recentTasksTable">
+                        <thead>
+                            <tr>
+                                <th>任务ID</th>
+                                <th>模型ID</th>
+                                <th>评估类型</th>
+                                <th>状态</th>
+                                <th>进度</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 动态加载数据 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>高质量模型</h3>
+                    <button id="viewAllModelsBtn" class="btn btn-secondary">查看全部</button>
+                </div>
+                <div class="table-content">
+                    <table id="highQualityModelsTable">
+                        <thead>
+                            <tr>
+                                <th>模型ID</th>
+                                <th>综合评分</th>
+                                <th>质量等级</th>
+                                <th>几何评分</th>
+                                <th>视觉评分</th>
+                                <th>技术评分</th>
+                                <th>评估时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 动态加载数据 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 加载状态 -->
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">加载中...</div>
+        </div>
+
+        <!-- 错误提示 -->
+        <div id="errorMessage" class="error-message" style="display: none;">
+            <div class="error-content">
+                <span class="error-icon">⚠️</span>
+                <span class="error-text"></span>
+                <button class="error-close" onclick="hideError()">×</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/evaluation-dashboard.js"></script>
+</body>
+</html>

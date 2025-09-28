@@ -1,0 +1,165 @@
+# 测试环境配置
+server:
+  port: 0  # 随机端口
+
+spring:
+  application:
+    name: generate-3d-backend-test
+  profiles:
+    active: test
+  
+  # 数据源配置 - 使用内存数据库
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  
+  # H2 数据库控制台（测试时可用）
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  # JPA配置
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+  
+  # Redis配置 - 使用嵌入式Redis
+  redis:
+    host: localhost
+    port: 6379
+    password: 
+    database: 1
+    timeout: 5000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
+  
+  # 文件上传配置
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+      enabled: true
+  
+  # Jackson配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+
+# MyBatis-Plus配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: assign_id
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+# 日志配置
+logging:
+  level:
+    com.generate3d: DEBUG
+    org.springframework.web: DEBUG
+    org.mybatis: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# 应用配置
+app:
+  # 文件存储配置
+  file:
+    upload-path: ./test-uploads/
+    model-path: ./test-models/
+    thumbnail-path: ./test-thumbnails/
+    max-size: 10MB
+  
+  # JWT配置
+  jwt:
+    secret: test-secret-key-for-jwt-token-generation-in-test-environment
+    expiration: 3600000  # 1小时
+    refresh-expiration: 604800000  # 7天
+  
+  # AI服务配置（测试环境使用模拟服务）
+  ai:
+    hunyuan:
+      enabled: false
+      secret-id: test-secret-id
+      secret-key: test-secret-key
+      region: ap-beijing
+      model: hunyuan-lite
+      max-tokens: 1000
+  
+  # 文件存储配置（测试环境使用本地存储）
+  storage:
+    type: local
+    oss:
+      enabled: false
+      endpoint: 
+      access-key-id: 
+      access-key-secret: 
+      bucket-name: 
+      domain: 
+  
+  # 监控配置
+  monitoring:
+    enabled: false
+
+# 测试专用配置
+test:
+  # 数据库初始化
+  database:
+    init-schema: true
+    init-data: true
+  
+  # 异步任务配置
+  async:
+    core-pool-size: 2
+    max-pool-size: 4
+    queue-capacity: 10
+  
+  # 缓存配置
+  cache:
+    enabled: true
+    ttl: 300  # 5分钟
+  
+  # 评估系统配置
+  evaluation:
+    # 模拟评估执行时间（毫秒）
+    mock-execution-time: 100
+    # 最大重试次数
+    max-retry-count: 3
+    # 任务超时时间（秒）
+    task-timeout: 30
+  
+  # 用户评分配置
+  rating:
+    # 允许匿名评分
+    allow-anonymous: true
+    # 评分范围
+    min-rating: 1.0
+    max-rating: 5.0
+    # 评分精度
+    rating-precision: 0.1
