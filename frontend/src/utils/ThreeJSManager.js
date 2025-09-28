@@ -29,6 +29,17 @@ class ThreeJSManager {
     // 容器引用
     this.container = null;
 
+    // 新增：视角切换相关
+    this.is2dMode = false; // 是否为2D俯瞰模式
+    this.defaultCameraPos = new THREE.Vector3(5, 5, 5); // 3D模式默认相机位置
+    this.defaultCameraTarget = new THREE.Vector3(0, 2, 0); // 3D模式默认相机目标点
+    this.orthoCamera = null; // 2D模式使用的正交相机（可选，用透视相机也可实现俯瞰）
+
+    // 新增：自动旋转漫游相关
+    this.isAutoRotate = false; // 是否开启自动旋转
+    this.autoRotateSpeed = 0.005; // 自动旋转速度（弧度/帧）
+    this.autoRotateTimer = null; // 自动旋转定时器
+    this.rotateTarget = new THREE.Vector3(0, 2, 0); // 自动旋转围绕的目标点（默认模型中心）
     // 模型列表
     this.sceneModels = [];
 
@@ -990,6 +1001,161 @@ class ThreeJSManager {
     };
   }
 
+  /**
+ * 切换2D（俯瞰）/3D（自由）视角
+ * @param {boolean} is2d - true=2D俯瞰，false=3D自由视角
+ */
+  toggle2d3dMode(is2d) {
+    if (!this.camera || !this.controls) return;
+
+    this.is2dMode = is2d;
+    const targetY = this.roomMesh?.position.y || 2; // 目标点Y轴高度（适配房间模型）
+
+    if (is2d) {
+      // 切换到2D俯瞰模式：固定相机在正上方，锁定旋转
+      this.camera.position.set(0, 15, 0); // 正上方位置（高度可根据场景调整）
+      this.controls.target.set(0, targetY, 0); // 目标点锁定在场景中心
+      this.controls.enableRotate = false; // 禁用旋转
+      this.controls.enablePan = true; // 允许平移（仅Y轴平移，模拟2D拖动）
+      this.controls.panSpeed = 0.5; // 调整平移速度
+      // 锁定相机视角：仅允许俯瞰（固定X轴旋转-90度，Y/Z轴旋转0）
+      this.camera.rotation.set(-Math.PI / 2, 0, 0);
+    } else {
+      // 切换到3D自由模式：恢复默认相机位置和控制
+      this.camera.position.copy(this.defaultCameraPos);
+      this.controls.target.copy(this.defaultCameraTarget);
+      this.controls.enableRotate = true; // 恢复旋转
+      this.controls.enablePan = true; // 恢复平移
+      this.controls.panSpeed = 1; // 恢复默认平移速度
+    }
+
+    // 立即更新控制器状态
+    this.controls.update();
+  }
+
+  /**
+   * 保存3D模式下的相机默认位置（切换回3D时恢复）
+   */
+  saveDefaultCameraState() {
+    if (this.camera && this.controls && !this.is2dMode) {
+      this.defaultCameraPos.copy(this.camera.position);
+      this.defaultCameraTarget.copy(this.controls.target);
+    }
+  }
+
+  /**
+ * 优化：开启自动旋转时，默认以场景中心为目标
+ * @param {boolean} enable - true=开启，false=关闭
+ */
+  toggleAutoRotate(enable) {
+    if (!this.camera || !this.controls) return;
+
+    this.isAutoRotate = enable;
+
+    if (enable) {
+      // 清除原有定时器，避免重复旋转
+      if (this.autoRotateTimer) {
+        cancelAnimationFrame(this.autoRotateTimer);
+        this.autoRotateTimer = null;
+      }
+      // 启动旋转（内部会自动获取场景中心）
+      this.startAutoRotate();
+    } else {
+      // 关闭旋转：清除定时器
+      if (this.autoRotateTimer) {
+        cancelAnimationFrame(this.autoRotateTimer);
+        this.autoRotateTimer = null;
+      }
+    }
+  }
+
+  /**
+ * 修复：围绕场景中心自动旋转（实时更新中心和距离）
+ */
+  startAutoRotate() {
+    // 初始化时获取场景中心和初始相机距离（基于中心计算）
+    let sceneCenter = this.getSceneCenter();
+    let cameraDistance = this.camera.position.distanceTo(sceneCenter); // 相机到中心的初始距离
+
+    // 确保距离合理（避免过近或过远，可根据场景调整范围）
+    cameraDistance = Math.max(5, Math.min(20, cameraDistance));
+
+    const rotate = () => {
+      if (!this.isAutoRotate) return; // 若已关闭，停止循环
+
+      // 实时更新场景中心（应对模型位置变化）
+      sceneCenter = this.getSceneCenter();
+
+      // 1. 计算相机新位置（围绕场景中心Y轴旋转）
+      // 获取当前相机相对于中心的角度（基于X/Z轴坐标）
+      const currentAngle = Math.atan2(
+        this.camera.position.x - sceneCenter.x,
+        this.camera.position.z - sceneCenter.z
+      );
+      // 角度增量（控制旋转速度）
+      const newAngle = currentAngle + this.autoRotateSpeed;
+
+      // 极坐标转直角坐标：保持距离和高度，仅旋转角度
+      this.camera.position.set(
+        sceneCenter.x + cameraDistance * Math.sin(newAngle), // X轴位置
+        sceneCenter.y + 2, // 相机高度（高于中心2单位，可调整）
+        sceneCenter.z + cameraDistance * Math.cos(newAngle)  // Z轴位置
+      );
+
+      // 2. 相机始终看向场景中心
+      this.camera.lookAt(sceneCenter);
+      // 同步OrbitControls的目标点（避免手动操作时偏移）
+      this.controls.target.copy(sceneCenter);
+      this.controls.update();
+
+      // 循环执行旋转
+      this.autoRotateTimer = requestAnimationFrame(rotate);
+    };
+
+    // 启动旋转循环
+    this.autoRotateTimer = requestAnimationFrame(rotate);
+  }
+
+  /**
+   * 设置自动旋转速度
+   * @param {number} speed - 旋转速度（0.001~0.01 之间较合适，值越大越快）
+   */
+  setAutoRotateSpeed(speed) {
+    this.autoRotateSpeed = Math.max(0.001, Math.min(0.01, speed)); // 限制速度范围
+  }
+
+  /**
+   * 新增：计算场景中心（优先房间模型，无房间则取所有模型的几何中心）
+   * @returns {THREE.Vector3} 场景中心点坐标
+   */
+  getSceneCenter() {
+    // 1. 优先以房间模型（roomMesh）为中心
+    if (this.roomMesh) {
+      // 计算房间模型的包围盒，取包围盒中心
+      const roomBox = new THREE.Box3().setFromObject(this.roomMesh);
+      const roomCenter = new THREE.Vector3();
+      roomBox.getCenter(roomCenter);
+      return roomCenter;
+    }
+
+    // 2. 若无房间模型，取所有场景模型（sceneModels）的几何中心
+    if (this.sceneModels.length === 0) {
+      return new THREE.Vector3(0, 1, 0); // 默认中心（避免空场景报错）
+    }
+
+    // 计算所有模型的总包围盒
+    const totalBox = new THREE.Box3();
+    this.sceneModels.forEach(item => {
+      const modelBox = new THREE.Box3().setFromObject(item.mesh);
+      totalBox.expandByBox(modelBox); // 合并每个模型的包围盒
+    });
+
+    // 取总包围盒的中心
+    const center = new THREE.Vector3();
+    totalBox.getCenter(center);
+    return center;
+  }
+
   // 清理场景
   cleanupScene() {
     // 取消动画帧
@@ -1004,6 +1170,11 @@ class ThreeJSManager {
       this.container.removeEventListener('mouseup', this._eventHandlers.onMouseUp);
       this.container.removeEventListener('wheel', this._eventHandlers.onWheel);
       window.removeEventListener('resize', this._eventHandlers.onWindowResize);
+    }
+
+    if (this.autoRotateTimer) {
+      cancelAnimationFrame(this.autoRotateTimer);
+      this.autoRotateTimer = null;
     }
 
     // 清理DragControls
