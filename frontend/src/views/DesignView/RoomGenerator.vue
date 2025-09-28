@@ -146,11 +146,19 @@ async function generateRoom(type) {
             }
             // 上传户型图
             const formData = new FormData();
-            formData.append('file', rawFile);
+            formData.append('image', rawFile);
             formData.append('style', imageStyle.value);
+            console.log(formData)
             // 调用生成房间接口
-            await generateModelFromImage(formData);
-            ElMessage.success('房间生成成功');
+            await generateModelFromImage(formData).then(res => {
+                if (res.success === true) {
+                    ElMessage.success('房间模型生成中,请稍等');
+                } else {
+                    ElMessage.error(res.msg || '房间生成失败');
+                }
+            }).catch(() => {
+                ElMessage.error('房间生成失败');
+            });
             break;
         case 2:
             if (!textForm.text) {
@@ -163,7 +171,7 @@ async function generateRoom(type) {
             }
             // 生成房间
             await generateModel(textForm);
-            ElMessage.success('房间生成成功');
+            ElMessage.success('房间模型生成中,请稍等');
             break;
         default:
             break;

@@ -686,7 +686,13 @@ class ThreeJSManager {
 
   // 导出场景
   exportScene(format, onExportStart = null) {
+    // 先获取所有普通模型
     const exportableModels = this.sceneModels.map(m => m.mesh);
+    
+    // 如果存在房间模型，也将其添加到导出列表中
+    if (this.roomMesh) {
+      exportableModels.push(this.roomMesh);
+    }
 
     if (exportableModels.length === 0) {
       alert('场景中没有可导出的模型');

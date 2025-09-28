@@ -42,6 +42,14 @@
                 <el-link type="primary" @click="getRecommendSize">获取推荐尺寸</el-link>
             </div>
         </div>
+        <div class="generateResult">
+            <div class="title">
+                生成结果
+            </div>
+            <div class="previewImg">
+                <img :src="previewUrl" alt="预览模型" style="width: 60%; height: 60%; border-radius: 8px;">
+            </div>
+        </div>
     </div>
 </template>
 
@@ -73,6 +81,8 @@ const textForm = reactive({
     height: 0.5,
     style: ''
 });
+
+const previewUrl = ref('/modals/model_1.png');
 
 const placeholder = ref('');
 
@@ -148,11 +158,11 @@ async function generateRoom(type) {
             }
             // 上传模型图
             const formData = new FormData();
-            formData.append('file', rawFile);
+            formData.append('image', rawFile);
             formData.append('style', imageStyle.value);
             // 调用生成房间接口
             await generateModelFromImage(formData);
-            ElMessage.success('模型生成成功');
+            ElMessage.success('模型生成中,请稍等');
             break;
         case 2:
             if (!textForm.text) {
@@ -165,7 +175,7 @@ async function generateRoom(type) {
             }
             // 生成模型
             await generateModel(textForm);
-            ElMessage.success('模型生成成功');
+            ElMessage.success('模型生成中,请稍等');
             break;
         default:
             break;
@@ -210,7 +220,6 @@ onMounted(() => {
 
     .textGenerator {
         width: 100%;
-        height: 160px;
         border-radius: 8px;
         padding-top: 15px;
         text-align: center;
@@ -218,7 +227,7 @@ onMounted(() => {
         flex-direction: column;
         justify-content: start;
         align-items: center;
-        gap: 20px;
+        gap: 20px;        
 
         .recommened {
             margin-top: -10px;
@@ -227,6 +236,16 @@ onMounted(() => {
             border-radius: 4px;
             display: flex;
             justify-content: right;
+        }
+    }
+    .generateResult {
+        width: 100%;
+        border-radius: 8px;
+        .title {
+            margin-bottom: 10px;
+        }
+        .imgContainer {
+            text-align: center;
         }
     }
 }

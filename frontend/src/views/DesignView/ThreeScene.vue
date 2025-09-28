@@ -208,6 +208,7 @@ watch(() => props.currentDragModel, handleDragModelChange);
 @headerHeight: 60px;
 
 .three-scene {
+  position: relative;
   width: 100%;
   height: 100%;
 }
@@ -219,8 +220,8 @@ watch(() => props.currentDragModel, handleDragModelChange);
 }
 
 .info-container {
-  position: fixed;
-  top: @headerHeight;
+  position: absolute;
+  top: 0;
   right: 0;
   width: 250px;
   height: calc(100vh - @headerHeight);
@@ -321,10 +322,9 @@ watch(() => props.currentDragModel, handleDragModelChange);
 }
 
 .scene-controls {
-  position: fixed;
+  position: absolute;
   left: 20%;
   bottom: 0;
-  transform: translateX();
   z-index: 100;
   padding: 10px 20px;
   display: flex;

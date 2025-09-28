@@ -33,7 +33,7 @@ export function generateModelFromImage(formData) {
     method: 'post',
     data: formData,
     headers: {
-      'Content-Type': 'multipart/form-data', // 上传文件必须是这个类型
+      'Content-Type': 'multipart/form-data',
     },
   });
 }
