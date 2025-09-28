@@ -1,0 +1,102 @@
+# AI调用优化配置
+ai:
+  optimization:
+    # 缓存配置
+    cache:
+      enabled: true
+      memory-ttl-hours: 2
+      redis-ttl-hours: 24
+      memory-max-entries: 1000
+      cleanup-interval-minutes: 30
+      warmup-prompts:
+        - "生成一个现代风格的椅子"
+        - "创建一个简约的桌子"
+        - "设计一个科技感的灯具"
+        - "制作一个卡通角色模型"
+        - "生成一个工业风格的书架"
+        - "创建一个北欧风格的沙发"
+        - "设计一个未来感的汽车"
+        - "制作一个可爱的动物模型"
+
+    # 频率限制配置
+    rate-limit:
+      enabled: true
+      max-calls-per-hour: 100
+      max-calls-per-minute: 10
+      window-size-minutes: 60
+      wait-time-seconds: 60
+
+    # 批量处理配置
+    batch:
+      enabled: true
+      max-batch-size: 10
+      wait-time-ms: 100
+      similarity-threshold: 0.8
+
+    # 异步处理配置
+    async:
+      enabled: true
+      core-pool-size: 5
+      max-pool-size: 20
+      queue-capacity: 100
+      keep-alive-seconds: 60
+      thread-name-prefix: "ai-async-"
+
+    # 监控配置
+    monitoring:
+      enabled: true
+      stats-retention-hours: 168  # 7天
+      metrics-interval-seconds: 60
+      detailed-logging: false
+      slow-query-threshold-ms: 5000
+
+# Spring异步配置
+spring:
+  task:
+    execution:
+      pool:
+        core-size: 5
+        max-size: 20
+        queue-capacity: 100
+        keep-alive: 60s
+      thread-name-prefix: "ai-task-"
+
+# Redis配置（如果使用Redis缓存）
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+    timeout: 3000ms
+    lettuce:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 5
+        max-wait: 3000ms
+
+# 日志配置
+logging:
+  level:
+    com.generate3d.service.AICallOptimizationService: INFO
+    com.generate3d.service.OptimizedHunyuanService: INFO
+    com.generate3d.service.AICallMonitoringService: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%logger{50}] - %msg%n"
+
+# 管理端点配置（用于监控）
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: generate-3d-backend
+      service: ai-optimization
