@@ -1,7 +1,7 @@
 <template>
   <div class="design-container">
     <div class="header">
-      <Header />
+      <Header @export-models="handleExportModels" />
     </div>
     <div class="content">
       <router-view />
@@ -11,6 +11,25 @@
 
 <script setup>
 import Header from './Header.vue';
+import { ref } from 'vue';
+
+// 定义全局事件总线用于组件间通信
+const eventBus = ref({
+  on: (event, callback) => {
+    window.addEventListener(`custom-${event}`, callback);
+  },
+  emit: (event, data) => {
+    window.dispatchEvent(new CustomEvent(`custom-${event}`, { detail: data }));
+  }
+});
+
+// 处理导出模型事件
+const handleExportModels = () => {
+  eventBus.value.emit('export-models');
+};
+
+// 暴露事件总线给全局使用
+window.eventBus = eventBus.value;
 </script>
 
 <style scoped lang="less">

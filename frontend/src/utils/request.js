@@ -47,6 +47,6 @@ instance.interceptors.response.use(function (response) {
     }
   }
 
-  return Promise.reject(error);
+  return Promise.reject(error.response?.data || '请求失败');
 });
 export default instance;

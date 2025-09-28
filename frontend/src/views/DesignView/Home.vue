@@ -65,6 +65,15 @@ const showExportDialog = ref(false);
 // 组件引用
 const threeSceneRef = ref(null);
 
+// 监听导出事件
+eventBus.on('export-models', () => {
+  if (threeSceneRef.value && typeof threeSceneRef.value.exportScene === 'function') {
+    threeSceneRef.value.exportScene();
+  } else {
+    console.warn('ThreeScene组件或exportScene方法不存在');
+  }
+});
+
 const fullscreenLoading = ref(false);
 
 // 生成房间模型

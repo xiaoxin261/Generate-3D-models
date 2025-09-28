@@ -48,7 +48,8 @@
                     </el-form>
                 </el-tab-pane>
             </el-tabs>
-            <el-tabs v-show="currentPage === 'register'" v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+            <el-tabs v-show="currentPage === 'register'" v-model="activeName" class="demo-tabs"
+                @tab-click="handleClick">
                 <el-tab-pane label="注册" name="first">
                     <el-form :model="formRegister" label-width="auto" style="max-width: 600px">
                         <el-form-item label="" prop="username">
@@ -64,12 +65,12 @@
                                 prefix-icon="Phone"></el-input>
                         </el-form-item>
                         <el-form-item label="" prop="password">
-                            <el-input class="mobile-input" v-model="formRegister.password" placeholder="请输入密码" type="password"
-                                prefix-icon="Lock"></el-input>
+                            <el-input class="mobile-input" v-model="formRegister.password" placeholder="请输入密码"
+                                type="password" prefix-icon="Lock"></el-input>
                         </el-form-item>
                         <el-form-item label="" prop="confirmPassword">
-                            <el-input class="mobile-input" v-model="formRegister.confirmPassword" placeholder="请确认密码" type="password"
-                                prefix-icon="Lock"></el-input>
+                            <el-input class="mobile-input" v-model="formRegister.confirmPassword" placeholder="请确认密码"
+                                type="password" prefix-icon="Lock"></el-input>
                         </el-form-item>
                         <el-form-item label="" prop="verificationCode">
                             <el-input class="mobile-input" v-model="formRegister.verificationCode" placeholder="请输入验证码"
@@ -124,6 +125,7 @@
 <script setup>
 import { ref } from 'vue'
 import { login, register } from '@/api/auth'
+import router from '@/router'
 
 const form = ref({
     loginName: '',
@@ -160,10 +162,9 @@ const handleClick = (to) => {
                 return;
             }
             login(form.value).then(res => {
-                console.log(res)
-                if (res.code === 200) {
+                if (res.success === true) {
                     ElMessage.success('登录成功');
-                    router.push({ name: 'home' });
+                    router.push({ name: 'design' });
                 } else {
                     ElMessage.error(res.msg || '登录失败');
                 }
@@ -172,17 +173,21 @@ const handleClick = (to) => {
             });
             break
         case 'register':
-            console.log(formRegister.value)
             register(formRegister.value).then(res => {
                 console.log(res)
                 if (res.success === true) {
                     ElMessage.success('注册成功');
-                    router.push({ name: 'login' });
+                    currentPage.value = 'login';
+                }
+            }).catch((res) => {
+                console.log(res)
+                if (res.errors) {
+                    Object.values(res.errors).forEach(item => {
+                        ElMessage.error(item);
+                    })
                 } else {
                     ElMessage.error(res.message || '注册失败');
                 }
-            }).catch(() => {
-                ElMessage.error('注册失败');
             });
             break
         case 'password':

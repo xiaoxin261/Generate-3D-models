@@ -4,7 +4,7 @@
             <router-link to="/" class="logo">
                 七牛AI
             </router-link>
-            <div class="export">
+            <div class="export" @click="handleExport">
                 <img src="/images/icon_export.png" alt="export">
                 <span>导出</span>
             </div>
@@ -26,6 +26,10 @@
 
 <script setup>
 import { ref } from 'vue'
+
+// 定义事件
+const emit = defineEmits(['export-models'])
+
 const navCenterList = ref([
     {
         id: 'file',
@@ -72,6 +76,11 @@ const navRightList = ref([
 ])
 const clickItem = (id) => {
     console.log(id)
+}
+
+// 处理导出按钮点击
+const handleExport = () => {
+    emit('export-models')
 }
 
 </script>

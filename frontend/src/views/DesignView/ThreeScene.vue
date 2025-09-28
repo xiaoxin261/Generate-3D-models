@@ -8,8 +8,6 @@
       </button>
     </div>
     <div class="scene-container" ref="sceneRef"></div>
-
-
     <div class="info-container">
       <div class="infoBox">
         <div class="modelName">
@@ -196,7 +194,7 @@ const addParticlesEffect = () => { };
 const exportScene = () => threeManager.exportScene(exportFormat.value, () => emit('export-models'));
 
 // 暴露方法与生命周期（不变）
-defineExpose({ addParticlesEffect, loadRoomModel, loadSimpleModel });
+defineExpose({ addParticlesEffect, loadRoomModel, loadSimpleModel, exportScene });
 onMounted(() => initScene());
 onBeforeUnmount(() => {
   threeManager.toggleAutoRotate(false);
