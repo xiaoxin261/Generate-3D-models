@@ -149,7 +149,7 @@ const handleGenerateModel = (params) => {
 // 生命周期钩子
 onMounted(() => {
   // 组件挂载后，生成房间模型
-  generateRoomModel(10);
+  // generateRoomModel(10);
 });
 
 // 调用腾讯混元API

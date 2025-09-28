@@ -1,10 +1,10 @@
 <template>
-    <div class="room-generator">
+    <div class="room-generator" v-loading.fullscreen.lock="fullscreenLoading">
         <div class="imgGenerator">
             <div class="imgContainer">
                 <ImageUpload @change="handleFile" placeholder="上传户型图" />
             </div>
-            <el-select v-model="value" placeholder="选择户型风格" style="width: 100%; margin-top: 10px;">
+            <el-select v-model="imageStyle" placeholder="选择户型风格" style="width: 100%; margin-top: 10px;">
                 <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
             <el-button type="info" style="width: 100%; height: 30px; margin-top: 15px; border-radius: 4px;" @click="generateRoom(1)">
@@ -17,7 +17,7 @@
             </div>
             <el-form :model="textForm" :rules="rules" label-width="auto" style="max-width: 600px">
                 <el-form-item label="描述" prop="text">
-                    <el-input v-model="textForm.text" style="width: 100%;" :rows="2" type="textarea"
+                    <el-input v-model="textForm.text" style="width: 100%;" :rows="1" type="textarea"
                         placeholder="请输入想要的房间描述" />
                 </el-form-item>
                 <el-form-item label="长(米)">
@@ -48,9 +48,9 @@
 <script setup>
 import ImageUpload from '../../component/ImageUpload.vue';
 import { onMounted, reactive, ref } from 'vue';
-import { getModelDimensionRecommendation, getModelStyles } from '../../api/model';
+import { getModelDimensionRecommendation, getModelStyles, generateModelFromImage, generateModel } from '../../api/model';
 
-const value = ref('');
+const fullscreenLoading = ref(true);
 const options = ref([
     {
         value: 'option1',
@@ -74,6 +74,14 @@ const textForm = reactive({
     style: ''
 });
 
+const imageStyle = ref('');
+
+let rawFile = null
+
+function handleFile(file) {
+  rawFile = file   // 只存不上传
+}
+
 // 校验规则
 const rules = reactive({
     text: [
@@ -93,12 +101,6 @@ const rules = reactive({
     ]
 });
 
-function handleFile(file) {
-    const fd = new FormData()
-    fd.append('file', file)
-    // axios.post('/api/upload', fd)
-}
-
 // 获取推荐尺寸
 function getRecommendSize() {
     getModelDimensionRecommendation().then(res => {
@@ -111,13 +113,24 @@ function getRecommendSize() {
 }
 
 // 生成房间
-function generateRoom(type) {
+async function generateRoom(type) {
     switch (type) {
         case 1:
-            if (!textForm.text) {
-                ElMessage.error('请输入房间描述');
+            if (!rawFile) {
+                ElMessage.error('请上传户型图');
                 return;
             }
+            if (!imageStyle.value) {
+                ElMessage.error('请选择户型风格');
+                return;
+            }
+            // 上传户型图
+            const formData = new FormData();
+            formData.append('file', rawFile);
+            formData.append('style', imageStyle.value);
+            // 调用生成房间接口
+            await generateModelFromImage(formData);
+            ElMessage.success('房间生成成功');
             break;
         case 2:
             if (!textForm.text) {
@@ -128,6 +141,9 @@ function generateRoom(type) {
                 ElMessage.error('请选择房间风格');
                 return;
             }
+            // 生成房间
+            await generateModel(textForm);
+            ElMessage.success('房间生成成功');
             break;
         default:
             break;
@@ -145,6 +161,7 @@ onMounted(() => {
     }).catch(() => {
         ElMessage.error('获取风格失败');
     });
+    fullscreenLoading.value = false;
 });
 
 </script>

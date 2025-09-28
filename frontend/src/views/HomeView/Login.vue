@@ -128,8 +128,6 @@ const formRegister = ref({
     verificationCode: ''
 })
 
-
-
 const activeName = ref('first')
 const currentPage = ref('login')
 
@@ -153,7 +151,9 @@ const handleClick = (to) => {
     transform: translate(-50%, -50%);
     width: 70%;
     height: 70%;
-    background-color: #f5f5f5;
+    background-image: url('/images/bg_login.jpg');
+    background-size: cover;
+    background-position: center;
 
     .title {
         position: absolute;

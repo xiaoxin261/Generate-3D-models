@@ -10,26 +10,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { ElMessage } from 'element-plus'
+
+/* =====  props / emit  ===== */
 const props = defineProps({
-    placeholder: {
-        type: String,
-        default: '点击上传'
-    }
+    imageUrl: { type: String, default: '' },
+    placeholder: { type: String, default: '点击上传' }
 })
 
-// 预览地址
-const imageUrl = ref('')
+const emit = defineEmits(['update:imageUrl', 'change'])
 
-// 大小限制 2MB
+/* =====  内部状态  ===== */
+const innerUrl = ref(props.imageUrl)
+
+watch(() => props.imageUrl, val => { innerUrl.value = val || '' })
+
+/* =====  校验  ===== */
 const MAX_SIZE = 2 * 1024 * 1024
-
-// 格式白名单
 const WHITE_LIST = ['image/jpeg', 'image/jpg', 'image/png']
 
-const emit = defineEmits(['update:modelValue'])
-
-// 校验
 function beforeUpload(rawFile) {
     if (!WHITE_LIST.includes(rawFile.type)) {
         ElMessage.error('仅支持 JPG / PNG 格式')
@@ -42,15 +42,15 @@ function beforeUpload(rawFile) {
     return true
 }
 
-// 覆盖默认上传：只做预览，不真正发请求
+/* =====  上传逻辑（只做预览）  ===== */
 function dummyRequest(options) {
     const file = options.file
-    // 生成本地预览地址
-    imageUrl.value = URL.createObjectURL(file)
-    // 这里拿到原始 File，你可以 emit 给父组件，或者稍后一起 POST
-    console.log('拿到 File 对象：', file)
-    // 必须调用 resolve，否则 el-upload 内部会卡住
-    options.onSuccess()
+    const url = URL.createObjectURL(file)
+
+    innerUrl.value = url
+    emit('update:imageUrl', url) // 支持 v-model
+    emit('change', file)         // 把 File 抛出去给父组件上传
+    options.onSuccess(null)
 }
 </script>
 
