@@ -1,7 +1,8 @@
 import axios from 'axios';
 import useAuthStore from '../stores/auth';
 const instance = axios.create({
-  baseURL: 'http://localhost:8081',
+  baseURL: 'http://localhost:8090/api',
+  // baseURL: 'http://106.53.206.242:8090/api',
   timeout: 100000,
   headers: {
     'Content-Type': 'application/json',
@@ -20,7 +21,7 @@ instance.interceptors.request.use(function (config) {
 
 // 添加响应拦截器
 instance.interceptors.response.use(function (response) {
-  return response;
+  return response.data;
 }, async (error) => {
   const originalRequest = error.config;
 

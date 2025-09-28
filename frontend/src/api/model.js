@@ -61,9 +61,10 @@ export function getModelFormConfig() {
 /**
  * 获取3D模型尺寸推荐
  */
-export function getModelDimensionRecommendation() {
+export function getModelDimensionRecommendation(data) {
   return request({
     url: '/api/v1/models/dimension-recommendation',
     method: 'get',
+    data
   });
 }

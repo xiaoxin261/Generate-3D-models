@@ -111,6 +111,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { login, register } from '@/api/auth'
 
 const form = ref({
     username: '',
@@ -134,8 +135,28 @@ const currentPage = ref('login')
 const handleClick = (to) => {
     switch (to) {
         case 'login':
+            login(form.value).then(res => {
+                if (res.code === 200) {
+                    ElMessage.success('登录成功');
+                    router.push({ name: 'home' });
+                } else {
+                    ElMessage.error(res.msg || '登录失败');
+                }
+            }).catch(() => {
+                ElMessage.error('登录失败');
+            });
             break
         case 'register':
+            register(formRegister.value).then(res => {
+                if (res.code === 200) {
+                    ElMessage.success('注册成功');
+                    router.push({ name: 'login' });
+                } else {
+                    ElMessage.error(res.msg || '注册失败');
+                }
+            }).catch(() => {
+                ElMessage.error('注册失败');
+            });
             break
         case 'password':
             break

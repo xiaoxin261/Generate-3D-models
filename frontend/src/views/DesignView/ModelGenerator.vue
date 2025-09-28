@@ -17,17 +17,17 @@
             </div>
             <el-form :model="textForm" :rules="rules" label-width="50px" style="max-width: 600px">
                 <el-form-item label="描述" prop="text">
-                    <el-input v-model="textForm.text" style="width: 100%;" :rows="1" type="textarea"
-                        placeholder="请输入想要的模型描述" />
+                    <el-input v-model="textForm.text" style="width: 100%;" :rows="3" type="textarea"
+                        :placeholder="placeholder" />
                 </el-form-item>
                 <el-form-item label="长">
-                    <el-input v-model="textForm.long" type="number" />
+                    <el-input v-model="textForm.long" :step="inputForm.step" :min="inputForm.min" :max="inputForm.max" type="number" />
                 </el-form-item>
                 <el-form-item label="宽">
-                    <el-input v-model="textForm.width" type="number" />
+                    <el-input v-model="textForm.width" :step="inputForm.step" :min="inputForm.min" :max="inputForm.max" type="number" />
                 </el-form-item>
                 <el-form-item label="高">
-                    <el-input v-model="textForm.height" type="number" />
+                    <el-input v-model="textForm.height" :step="inputForm.step" :min="inputForm.min" :max="inputForm.max" type="number" />
                 </el-form-item>
                 <el-form-item label="风格">
                     <el-select v-model="textForm.style" placeholder="选择风格" style="width: 100%;">
@@ -48,7 +48,7 @@
 <script setup>
 import ImageUpload from '../../component/ImageUpload.vue';
 import { onMounted, reactive, ref } from 'vue';
-import { getModelDimensionRecommendation, getModelStyles, generateModelFromImage, generateModel } from '../../api/model';
+import { getModelDimensionRecommendation, getModelStyles, generateModelFromImage, generateModel, getFormConfig } from '../../api/model';
 
 const value = ref('');
 const options = ref([
@@ -68,11 +68,13 @@ const options = ref([
 
 const textForm = reactive({
     text: '',
-    long: 0,
-    width: 0,
-    height: 0,
+    long: 0.5,
+    width: 0.5,
+    height: 0.5,
     style: ''
 });
+
+const placeholder = ref('');
 
 const imageStyle = ref('');
 
@@ -101,12 +103,32 @@ const rules = reactive({
     ]
 });
 
+const inputForm = ref({
+    step: 0.1,
+    min: 0.1,
+    max: 100.0,
+    unit: 'm'
+});
+
+async function initForm() {
+    await getFormConfig().then(res => {
+        inputForm.value.step = res.data.length.step;
+        inputForm.value.min = res.data.length.min;
+        inputForm.value.max = res.data.length.max;
+        inputForm.value.unit = res.data.length.unit;
+        placeholder.value = `${res.data.textInput.placeholder}如${res.data.textInput.suggestions[0]}`;
+    }).catch(() => {
+        placeholder.value = '请输入模型描述';
+    });
+}
+
+
+
 // 获取推荐尺寸
 function getRecommendSize() {
-    getModelDimensionRecommendation().then(res => {
-        textForm.long = res.data.long;
-        textForm.width = res.data.width;
-        textForm.height = res.data.height;
+    getModelDimensionRecommendation(textForm.style).then(res => {
+        console.log(res)
+        ElMessage.success(res.data);
     }).catch(() => {
         ElMessage.error('获取尺寸失败');
     });
@@ -154,13 +176,14 @@ async function generateRoom(type) {
 
 onMounted(() => {
     getModelStyles().then(res => {
-        options.value = res.data.data.map(item => ({
+        options.value = res.data.map(item => ({
             value: item,
             label: item
         }));
     }).catch(() => {
         ElMessage.error('获取风格失败');
     });
+    initForm();
 });
 
 </script>
