@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * JWT认证过滤器
  */
 @Slf4j
-@Component
+// @Component  // 禁用JWT认证过滤器
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     

@@ -1,9 +1,12 @@
 package com.generate3d.config;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,7 +72,17 @@ public class SwaggerConfig {
         
         OpenAPI openAPI = new OpenAPI()
                 .info(info)
-                .servers(List.of(localServer, devServer, prodServer));
+                .servers(List.of(localServer, devServer, prodServer))
+                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
+                .components(new Components()
+                        .addSecuritySchemes("bearerAuth", new SecurityScheme()
+                                .name("bearerAuth")
+                                .type(SecurityScheme.Type.HTTP)
+                                .scheme("bearer")
+                                .bearerFormat("JWT")
+                                .description("JWT认证，格式：Bearer <token>")
+                        )
+                );
         
         log.info("Swagger API文档配置完成，当前环境: {}", activeProfile);
         
