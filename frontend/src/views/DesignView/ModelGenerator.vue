@@ -15,18 +15,18 @@
             <div class="title">
                 自定义模型参数
             </div>
-            <el-form :model="textForm" :rules="rules" label-width="auto" style="max-width: 600px">
+            <el-form :model="textForm" :rules="rules" label-width="50px" style="max-width: 600px">
                 <el-form-item label="描述" prop="text">
                     <el-input v-model="textForm.text" style="width: 100%;" :rows="1" type="textarea"
                         placeholder="请输入想要的模型描述" />
                 </el-form-item>
-                <el-form-item label="长(米)">
+                <el-form-item label="长">
                     <el-input v-model="textForm.long" type="number" />
                 </el-form-item>
-                <el-form-item label="宽(米)">
+                <el-form-item label="宽">
                     <el-input v-model="textForm.width" type="number" />
                 </el-form-item>
-                <el-form-item label="高(米)">
+                <el-form-item label="高">
                     <el-input v-model="textForm.height" type="number" />
                 </el-form-item>
                 <el-form-item label="风格">
