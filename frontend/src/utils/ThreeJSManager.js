@@ -32,7 +32,10 @@ class ThreeJSManager {
     // 模型列表
     this.sceneModels = [];
 
+    this.selectedModel = null; // 存储当前选中的模型（含mesh和参数）
+
     // 事件回调
+    this.onModelClicked = null; // 点击模型后的回调函数（外部可传入）
     this.onModelPlaced = null;
     this.onModelDragged = null;
   }
@@ -149,6 +152,18 @@ class ThreeJSManager {
     this._initDragControls();
   }
 
+  /**
+   * 外部接口：设置模型点击后的回调函数
+   * @param {Function} callback - 回调函数，参数为选中的模型信息（null表示未选中）
+   */
+  setOnModelClicked(callback) {
+    if (typeof callback === 'function') {
+      this.onModelClicked = callback;
+    } else {
+      console.warn('setOnModelClicked: 请传入有效的函数');
+    }
+  }
+
   // 绑定事件
   _bindEvents() {
     if (!this.container) return;
@@ -160,10 +175,13 @@ class ThreeJSManager {
     this.container.addEventListener('wheel', onWheel);
     window.addEventListener('resize', onWindowResize);
 
+    const onClick = (event) => this.handleModelClick(event);
+    this.container.addEventListener('click', onClick);
     // 保存事件处理器引用以便后续清理
     this._eventHandlers = {
       onWheel,
-      onWindowResize
+      onWindowResize,
+      onClick
     };
   }
 
@@ -283,7 +301,7 @@ class ThreeJSManager {
 
     // 调用loadAndPlaceModel加载房间模型并传递缩放参数
     this.loadAndPlaceModel(roomModel, scale);
-    this.controls.target.set(0, scale/5, 0);   // 控制“相机轨道中心”
+    this.controls.target.set(0, scale / 5, 0);   // 控制“相机轨道中心”
     this.controls.update();              // 改完必须 update
   }
 
@@ -777,6 +795,93 @@ class ThreeJSManager {
     }, 100);
   }
 
+  /**
+ * 处理模型点击：检测点击的模型并计算其长宽高
+ * @param {MouseEvent} event - 鼠标点击事件
+ */
+  handleModelClick(event) {
+    if (this.isDragging || !this.scene || !this.camera) return;
+
+    this.updateMousePosition(event);
+
+    this.raycaster.setFromCamera(this.mouse, this.camera);
+
+    const clickableModels = this.sceneModels.map(item => item.mesh);
+    if (this.roomMesh) clickableModels.push(this.roomMesh);
+
+    const intersects = this.raycaster.intersectObjects(clickableModels, true);
+    if (intersects.length === 0) {
+      this.selectedModel = null;
+      if (this.onModelClicked) this.onModelClicked(null);
+      return;
+    }
+
+    const clickedMesh = intersects[0].object;
+    const rootMesh = this._findRootModelMesh(clickedMesh);
+    const modelSize = this._calculateModelSize(rootMesh);
+
+    const modelInfo = this.sceneModels.find(item => item.mesh === rootMesh) || {
+      id: rootMesh.uuid,
+      name: rootMesh.name || '未命名模型',
+      mesh: rootMesh
+    };
+
+    this.selectedModel = {
+      ...modelInfo,
+      size: modelSize,
+      position: rootMesh.position.clone(),
+      rotation: rootMesh.rotation.clone(),
+      scale: rootMesh.scale.clone()
+    };
+
+    // 触发外部回调：将模型参数传递给外部
+    if (this.onModelClicked) {
+      this.onModelClicked(this.selectedModel);
+    }
+  }
+
+  /**
+   * 辅助方法：找到嵌套模型的最顶层父模型（解决GLTF/OBJ模型多层子mesh问题）
+   * @param {THREE.Mesh} mesh - 点击的子mesh
+   * @returns {THREE.Mesh} 最顶层的父模型
+   */
+  _findRootModelMesh(mesh) {
+    let parent = mesh;
+    while (parent.parent && parent.parent.isMesh) {
+      parent = parent.parent;
+    }
+    if (parent === this.roomMesh) return this.roomMesh;
+    return parent;
+  }
+
+  /**
+   * 辅助方法：计算模型的实际长宽高（考虑模型缩放）
+   * @param {THREE.Mesh} mesh - 目标模型
+   * @returns {Object} { width: 宽度, height: 高度, depth: 深度 }
+   */
+  _calculateModelSize(mesh) {
+    const boundingBox = new THREE.Box3().setFromObject(mesh);
+
+    const boxSize = new THREE.Vector3();
+    boundingBox.getSize(boxSize);
+
+    // 如果需要“模型原始尺寸”（排除缩放），则除以缩放系数
+    const originalSize = new THREE.Vector3(
+      boxSize.x / mesh.scale.x,
+      boxSize.y / mesh.scale.y,
+      boxSize.z / mesh.scale.z
+    );
+
+    return {
+      width: parseFloat(boxSize.x.toFixed(2)), // 实际显示宽度（保留2位小数）
+      height: parseFloat(boxSize.y.toFixed(2)), // 实际显示高度
+      depth: parseFloat(boxSize.z.toFixed(2)), // 实际显示深度
+      originalWidth: parseFloat(originalSize.x.toFixed(2)), // 模型原始宽度（可选）
+      originalHeight: parseFloat(originalSize.y.toFixed(2)), // 模型原始高度（可选）
+      originalDepth: parseFloat(originalSize.z.toFixed(2)) // 模型原始深度（可选）
+    };
+  }
+
   // 清理场景
   cleanupScene() {
     // 取消动画帧
@@ -816,6 +921,11 @@ class ThreeJSManager {
           }
         }
       });
+
+      // 移除点击事件监听（新增）
+      if (this.container && this._eventHandlers?.onClick) {
+        this.container.removeEventListener('click', this._eventHandlers.onClick);
+      }
 
       // 移除渲染器DOM元素
       if (this.renderer && this.renderer.domElement && this.renderer.domElement.parentNode) {

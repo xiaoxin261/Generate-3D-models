@@ -9,6 +9,8 @@
       </select>
     </div>
     <div class="scene-container" ref="sceneRef"></div>
+    <!-- 模型信息显示区域 -->
+    <div id="model-info" class="model-info"></div>
   </div>
 </template>
 
@@ -52,6 +54,39 @@ const initScene = () => {
   threeManager.initScene(container, (modelData) => {
     emit('modelPlaced', modelData);
   });
+
+  threeManager.setOnModelClicked((selectedModel) => {
+  if (selectedModel) {
+    // 点击到模型：打印/使用模型参数
+    console.log('选中的模型信息：', {
+      id: selectedModel.id, // 模型ID
+      name: selectedModel.name, // 模型名称
+      position: selectedModel.position, // 模型位置（x,y,z）
+      rotation: selectedModel.rotation, // 模型旋转（x,y,z）
+      scale: selectedModel.scale, // 模型缩放（x,y,z）
+      size: selectedModel.size, // 模型尺寸（width/height/depth）
+      originalSize: { // 模型原始尺寸（排除缩放）
+        width: selectedModel.size.originalWidth,
+        height: selectedModel.size.originalHeight,
+        depth: selectedModel.size.originalDepth
+      }
+    });
+
+    // 示例：在页面中显示模型尺寸
+    const infoEl = document.getElementById('model-info');
+    infoEl.innerHTML = `
+      <h3>选中模型：${selectedModel.name}</h3>
+      <p>宽度：${selectedModel.size.width} 单位</p>
+      <p>高度：${selectedModel.size.height} 单位</p>
+      <p>深度：${selectedModel.size.depth} 单位</p>
+      <p>原始宽度：${selectedModel.size.originalWidth} 单位</p>
+    `;
+  } else {
+    // 点击空白区域：清空选中状态
+    console.log('未选中任何模型');
+    document.getElementById('model-info').innerHTML = '未选中模型';
+  }
+});
 };
 
 // 生成房间
@@ -109,7 +144,7 @@ defineExpose({
 // 生命周期钩子
 onMounted(() => {
   initScene();
-  generateRoom();
+  // generateRoom(10);
 });
 
 onBeforeUnmount(() => {
@@ -145,5 +180,16 @@ watch(() => props.currentDragModel, handleDragModelChange);
   gap: 10px;
   background-color: #fff;
   border-radius: 0 0 8px 8px;
+}
+
+.model-info {
+  position: fixed;
+  top: @headerHeight;
+  right: 0;
+  z-index: 100;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 </style>
