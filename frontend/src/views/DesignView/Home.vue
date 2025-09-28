@@ -14,6 +14,8 @@
     <div class="model-generate-section">
       <RoomGenerator v-show="currentIndex === 0"/>
       <ModelGenerator v-show="currentIndex === 1" :is-generating="isGenerating" :progress="progress" @generate="handleGenerateModel" />
+      <ModelRecommened v-show="currentIndex === 2" />
+      <OwnModelList v-show="currentIndex === 3" />
     </div>
     <!-- <div class="room-generate-section">
       <RoomGenerator />
@@ -28,6 +30,8 @@ import { ref, onMounted } from 'vue';
 import ModelGenerator from './ModelGenerator.vue';
 import ThreeScene from './ThreeScene.vue';
 import RoomGenerator from './RoomGenerator.vue';
+import ModelRecommened from './ModelRecommened.vue';
+import OwnModelList from './OwnModelList.vue';
 
 const currentIndex = ref(0);
 const tabList = ref([
