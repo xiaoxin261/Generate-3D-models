@@ -9,6 +9,8 @@ import com.generate3d.validator.BasicParameterValidator;
 import com.generate3d.validator.ImageParameterValidator;
 import com.generate3d.service.ModelGenerationService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +38,11 @@ public class ModelController {
      * 生成3D模型
      */
     @PostMapping("/generate")
-    @Operation(summary = "生成3D模型", description = "根据文本描述和参数生成3D模型")
+    @Operation(summary = "生成3D模型", description = "根据文本描述和参数生成3D模型",
+            security = @SecurityRequirement(name = "bearerAuth"))
+    @Parameter(name = "Authorization", description = "JWT认证令牌", 
+            example = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            in = io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER, required = false)
     public Result<ModelResponse> generateModel(@RequestBody @Valid GenerateModelRequest request) {
         try {
             // 参数验证
@@ -61,7 +67,11 @@ public class ModelController {
      * 图片生成3D模型
      */
     @PostMapping("/generate-from-image")
-    @Operation(summary = "图片生成3D模型", description = "根据上传的图片和参数生成3D模型")
+    @Operation(summary = "图片生成3D模型", description = "根据上传的图片和参数生成3D模型",
+            security = @SecurityRequirement(name = "bearerAuth"))
+    @Parameter(name = "Authorization", description = "JWT认证令牌", 
+            example = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            in = io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER, required = false)
     public Result<ModelResponse> generateModelFromImage(@ModelAttribute @Valid ImageTo3DRequest request) {
         try {
             // 参数验证

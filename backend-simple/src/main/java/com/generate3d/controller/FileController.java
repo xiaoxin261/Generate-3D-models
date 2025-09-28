@@ -3,6 +3,7 @@ package com.generate3d.controller;
 import com.generate3d.service.OssService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -30,7 +31,11 @@ public class FileController {
     }
 
     @PostMapping("/upload")
-    @Operation(summary = "上传文件", description = "上传文件到OSS存储")
+    @Operation(summary = "上传文件", description = "上传文件到OSS存储",
+            security = @SecurityRequirement(name = "bearerAuth"))
+    @Parameter(name = "Authorization", description = "JWT认证令牌", 
+            example = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            in = io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER, required = false)
     public ResponseEntity<Map<String, Object>> uploadFile(
             @Parameter(description = "上传的文件") @RequestParam("file") MultipartFile file,
             @Parameter(description = "文件夹路径，默认为'temp'") @RequestParam(value = "folder", defaultValue = "temp") String folder) {
@@ -67,7 +72,11 @@ public class FileController {
     }
 
     @DeleteMapping("/delete")
-    @Operation(summary = "删除文件", description = "根据文件URL删除OSS中的文件")
+    @Operation(summary = "删除文件", description = "根据文件URL删除OSS中的文件",
+            security = @SecurityRequirement(name = "bearerAuth"))
+    @Parameter(name = "Authorization", description = "JWT认证令牌", 
+            example = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            in = io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER, required = false)
     public ResponseEntity<Map<String, Object>> deleteFile(
             @Parameter(description = "文件URL") @RequestParam("url") String url) {
         
@@ -96,7 +105,11 @@ public class FileController {
     }
 
     @GetMapping("/info")
-    @Operation(summary = "获取文件信息", description = "根据文件URL获取文件的详细信息")
+    @Operation(summary = "获取文件信息", description = "根据文件URL获取文件的详细信息",
+            security = @SecurityRequirement(name = "bearerAuth"))
+    @Parameter(name = "Authorization", description = "JWT认证令牌", 
+            example = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            in = io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER, required = false)
     public ResponseEntity<Map<String, Object>> getFileInfo(
             @Parameter(description = "文件URL") @RequestParam("url") String url) {
         

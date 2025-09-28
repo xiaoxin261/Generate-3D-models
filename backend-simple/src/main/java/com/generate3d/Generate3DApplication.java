@@ -11,7 +11,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author Generate3D Team
  * @version 1.0.0
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+    org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
+    org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration.class,
+    org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class
+})
 @EnableAsync
 @EnableTransactionManagement
 public class Generate3DApplication {

@@ -5,6 +5,7 @@ import com.generate3d.dto.user.UpdateProfileRequest;
 import com.generate3d.dto.user.UserProfileResponse;
 import com.generate3d.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -31,7 +32,11 @@ public class UserController {
     private final UserService userService;
     
     @GetMapping("/profile")
-    @Operation(summary = "获取用户资料", description = "获取当前登录用户的详细资料")
+    @Operation(summary = "获取用户资料", description = "获取当前登录用户的详细资料",
+            security = @SecurityRequirement(name = "bearerAuth"))
+    @Parameter(name = "Authorization", description = "JWT认证令牌", 
+            example = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            in = io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER, required = true)
     public ResponseEntity<Map<String, Object>> getProfile(Authentication authentication) {
         try {
             Long userId = (Long) authentication.getPrincipal();
@@ -54,7 +59,11 @@ public class UserController {
     }
     
     @PutMapping("/profile")
-    @Operation(summary = "更新用户资料", description = "更新当前登录用户的资料信息")
+    @Operation(summary = "更新用户资料", description = "更新当前登录用户的资料信息",
+            security = @SecurityRequirement(name = "bearerAuth"))
+    @Parameter(name = "Authorization", description = "JWT认证令牌", 
+            example = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            in = io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER, required = true)
     public ResponseEntity<Map<String, Object>> updateProfile(@Valid @RequestBody UpdateProfileRequest request,
                                                            Authentication authentication) {
         try {
@@ -78,7 +87,11 @@ public class UserController {
     }
     
     @PostMapping("/change-password")
-    @Operation(summary = "修改密码", description = "修改当前登录用户的密码")
+    @Operation(summary = "修改密码", description = "修改当前登录用户的密码",
+            security = @SecurityRequirement(name = "bearerAuth"))
+    @Parameter(name = "Authorization", description = "JWT认证令牌", 
+            example = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            in = io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER, required = true)
     public ResponseEntity<Map<String, Object>> changePassword(@Valid @RequestBody ChangePasswordRequest request,
                                                             Authentication authentication) {
         try {
@@ -102,9 +115,25 @@ public class UserController {
     }
     
     @GetMapping("/info")
-    @Operation(summary = "获取用户基本信息", description = "获取当前登录用户的基本信息")
+    @Operation(summary = "获取用户基本信息", description = "获取当前登录用户的基本信息（如果已登录）",
+            security = @SecurityRequirement(name = "bearerAuth"))
+    @Parameter(name = "Authorization", description = "JWT认证令牌（可选）", 
+            example = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            in = io.swagger.v3.oas.annotations.enums.ParameterIn.HEADER, required = false)
     public ResponseEntity<Map<String, Object>> getUserInfo(Authentication authentication) {
         try {
+            Map<String, Object> response = new HashMap<>();
+            
+            // 检查是否已认证
+            if (authentication == null || authentication.getPrincipal() == null) {
+                // 未认证用户返回基本信息
+                response.put("success", true);
+                response.put("authenticated", false);
+                response.put("message", "用户未登录");
+                return ResponseEntity.ok(response);
+            }
+            
+            // 已认证用户返回详细信息
             Long userId = (Long) authentication.getPrincipal();
             UserProfileResponse profile = userService.getUserProfile(userId);
             
@@ -117,8 +146,8 @@ public class UserController {
             userInfo.put("email", profile.getEmail());
             userInfo.put("phone", profile.getPhone());
             
-            Map<String, Object> response = new HashMap<>();
             response.put("success", true);
+            response.put("authenticated", true);
             response.put("data", userInfo);
             
             return ResponseEntity.ok(response);
