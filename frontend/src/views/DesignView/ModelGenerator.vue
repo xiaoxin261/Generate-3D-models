@@ -58,7 +58,6 @@ import ImageUpload from '../../component/ImageUpload.vue';
 import { onMounted, reactive, ref } from 'vue';
 import { getModelDimensionRecommendation, getModelStyles, generateModelFromImage, generateModel, getFormConfig } from '../../api/model';
 
-const value = ref('');
 const options = ref([
     {
         value: 'option1',

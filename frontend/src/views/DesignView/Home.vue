@@ -17,10 +17,10 @@
       <ModelRecommened v-show="currentIndex === 2" />
       <OwnModelList v-show="currentIndex === 3" />
     </div>
-    <!-- <div class="room-generate-section">
-      <RoomGenerator />
-      <button v-loading.fullscreen.lock="fullscreenLoading" type="primary" @click="generateModel(1)">生成模型</button>
-    </div> -->
+    <div class="room-generate-section">
+      <button type="primary" @click="generateRoomModel(10)">生成房间</button>
+      <button type="primary" @click="generateModel(1)">生成模型</button>
+    </div>
   </div>
 
 </template>
@@ -87,9 +87,6 @@ const generateRoomModel = async (scale) => {
 
     roomModelUrl.value = mockRoomModelUrl;
 
-    console.log('房间模型URL生成成功:', mockRoomModelUrl);
-    console.log('房间模型MTL URL生成成功:', mockRoomMtlUrl);
-
     // 如果ThreeScene组件已经挂载，可以立即加载房间模型
     if (threeSceneRef.value && roomModelUrl.value) {
       // 直接调用ThreeScene的方法加载房间模型，并传递MTL文件路径
@@ -105,19 +102,12 @@ const generateRoomModel = async (scale) => {
 
 const generateModel = async (scale) => {
   try {
-    // 在实际应用中，这里应该调用API生成普通模型
-    // 这里使用模拟数据，假设有一个OBJ格式的普通模型和对应的MTL纹理文件
-    // 注意：在真实环境中，这里应该是有效的URL
     fullscreenLoading.value = true;
-    console.log('生成模型按钮点击');
     setTimeout(() => {
       fullscreenLoading.value = false;
     }, 2000)
-    const mockModelUrl = '/modals/mock.obj';
-    const mockModelMtlUrl = '/modals/mock.mtl';
-
-    console.log('普通模型URL生成成功:', mockModelUrl);
-    console.log('普通模型MTL URL生成成功:', mockModelMtlUrl);
+    const mockModelUrl = '/model/mock.obj';
+    const mockModelMtlUrl = '/model/mock.mtl';
 
     // 如果ThreeScene组件已经挂载
     if (threeSceneRef.value) {
@@ -162,7 +152,7 @@ const handleGenerateModel = (params) => {
 // 生命周期钩子
 onMounted(() => {
   // 组件挂载后，生成房间模型
-  generateRoomModel(10);
+  // generateRoomModel(10);
 });
 
 // 调用腾讯混元API
@@ -327,12 +317,6 @@ const closeExportDialog = () => {
 .room-generate-section {
   position: absolute;
   top: 0;
-  right: 10px;
-  padding: 20px;
-  background-color: white;
-  width: 15%;
-  height: 100%;
-  border-radius: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  right: 300px;
 }
 </style>
