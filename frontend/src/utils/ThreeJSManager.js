@@ -882,6 +882,114 @@ class ThreeJSManager {
     };
   }
 
+  /**
+ * 核心方法：设置当前选中模型的缩放（支持均匀/非均匀缩放）
+ * @param {number|Object} scale - 缩放参数：
+ *   - 若为number：均匀缩放（x=y=z=scale）
+ *   - 若为Object：{x: number, y: number, z: number}，分别设置三个轴
+ * @param {boolean} [isUniform=true] - 是否强制均匀缩放（可选，默认true）
+ */
+  setModelScale(scale, isUniform = true) {
+    // 1. 校验：无选中模型时返回
+    if (!this.selectedModel || !this.selectedModel.mesh) {
+      console.warn('请先选中一个模型再设置缩放');
+      return;
+    }
+
+    const mesh = this.selectedModel.mesh;
+    let targetScale = {};
+
+    // 2. 处理均匀缩放（传入单个数值）
+    if (typeof scale === 'number') {
+      // 校验：缩放值必须>0（避免模型消失或反向）
+      if (scale <= 0) {
+        console.error('缩放值必须大于0');
+        return;
+      }
+      targetScale = { x: scale, y: scale, z: scale };
+    }
+
+    // 3. 处理非均匀缩放（传入{x,y,z}对象）
+    else if (typeof scale === 'object' && scale.x !== undefined) {
+      // 校验：每个轴的缩放值必须>0
+      const valid = [scale.x, scale.y, scale.z].every(val => val > 0);
+      if (!valid) {
+        console.error('缩放值必须大于0');
+        return;
+      }
+      // 若强制均匀缩放，取三个轴的平均值（可选逻辑）
+      targetScale = isUniform
+        ? { x: (scale.x + scale.y + scale.z) / 3, y: (scale.x + scale.y + scale.z) / 3, z: (scale.x + scale.y + scale.z) / 3 }
+        : scale;
+    }
+
+    // 4. 应用缩放并更新选中模型的状态
+    mesh.scale.set(targetScale.x, targetScale.y, targetScale.z);
+    // 更新selectedModel中的scale（同步UI显示）
+    this.selectedModel.scale.copy(mesh.scale);
+    // 重新计算包围盒（确保后续点击检测的尺寸正确）
+    new THREE.Box3().setFromObject(mesh);
+  }
+
+  /**
+   * 核心方法：设置当前选中模型的旋转（支持角度输入，内部转弧度）
+   * @param {Object} rotation - 旋转参数：{x: number, y: number, z: number}（单位：角度）
+   * @param {boolean} [isAbsolute=true] - 是否“绝对设置”（true=直接设为该角度，false=在当前基础上累加）
+   */
+  setModelRotation(rotation, isAbsolute = true) {
+    // 1. 校验：无选中模型或参数不完整时返回
+    if (!this.selectedModel || !this.selectedModel.mesh || !rotation.x === undefined) {
+      console.warn('请先选中模型，并传入完整的旋转参数（{x,y,z}，单位：角度）');
+      return;
+    }
+
+    const mesh = this.selectedModel.mesh;
+    // 2. 角度转弧度（ThreeJS旋转用弧度制）
+    const radX = THREE.MathUtils.degToRad(rotation.x);
+    const radY = THREE.MathUtils.degToRad(rotation.y);
+    const radZ = THREE.MathUtils.degToRad(rotation.z);
+
+    // 3. 应用旋转（绝对设置或累加）
+    if (isAbsolute) {
+      // 绝对设置：直接覆盖当前旋转
+      mesh.rotation.set(radX, radY, radZ);
+    } else {
+      // 累加：在当前旋转基础上增加角度
+      mesh.rotation.x += radX;
+      mesh.rotation.y += radY;
+      mesh.rotation.z += radZ;
+    }
+
+    // 4. 更新选中模型的状态（同步UI显示）
+    this.selectedModel.rotation.copy(mesh.rotation);
+    // 重新计算包围盒（确保尺寸检测正确）
+    new THREE.Box3().setFromObject(mesh);
+  }
+
+  /**
+   * 辅助方法：获取当前选中模型的缩放/旋转（用于UI控件初始化显示）
+   * @returns {Object|null} 包含当前缩放（角度制旋转）的参数，无选中模型则返回null
+   */
+  getSelectedModelTransform() {
+    if (!this.selectedModel || !this.selectedModel.mesh) return null;
+
+    const mesh = this.selectedModel.mesh;
+    return {
+      // 缩放：直接返回当前值
+      scale: {
+        x: parseFloat(mesh.scale.x.toFixed(2)),
+        y: parseFloat(mesh.scale.y.toFixed(2)),
+        z: parseFloat(mesh.scale.z.toFixed(2))
+      },
+      // 旋转：转为角度制（用户友好）
+      rotation: {
+        x: parseFloat(THREE.MathUtils.radToDeg(mesh.rotation.x).toFixed(1)),
+        y: parseFloat(THREE.MathUtils.radToDeg(mesh.rotation.y).toFixed(1)),
+        z: parseFloat(THREE.MathUtils.radToDeg(mesh.rotation.z).toFixed(1))
+      }
+    };
+  }
+
   // 清理场景
   cleanupScene() {
     // 取消动画帧
